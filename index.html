@@ -2857,16 +2857,55 @@ document.addEventListener('input', e=>{
 
 /* ============ SHELF PHOTO SCANNER (calls the Claude API directly — real vision, not a mock) ============ */
 let scanImageBase64 = null;
+
+// En mobilkamerabild blir 4–8 MB, och base64 gör den ~33% större igen — det
+// spränger Netlify-funktionens payload-gräns innan backend ens körs. Vi skalar
+// ner till 1600px längsta sida, vilket räcker gott för att läsa modellnamnet på
+// en boll eller förpackning, och landar på några hundra kB.
+const SCAN_MAX_EDGE = 1600;
+const SCAN_MAX_BYTES = 4000000;
+
+function mediaTypeFromDataUrl(dataUrl){
+  const semi = dataUrl.indexOf(';');
+  return semi > 5 ? dataUrl.slice(5, semi) : 'image/jpeg';
+}
+
+function downscaleForScan(dataUrl){
+  return new Promise(resolve=>{
+    const img = new Image();
+    img.onload = ()=>{
+      const longest = Math.max(img.width, img.height);
+      const scale = Math.min(1, SCAN_MAX_EDGE / longest);
+      // Redan liten nog — skicka originalet och behåll dess format.
+      if(scale === 1 && dataUrl.length * 0.75 < SCAN_MAX_BYTES){
+        resolve({dataUrl, mediaType: mediaTypeFromDataUrl(dataUrl)});
+        return;
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      resolve({dataUrl: canvas.toDataURL('image/jpeg', 0.85), mediaType: 'image/jpeg'});
+    };
+    // Kan canvas inte läsa bilden är originalet bättre än ingenting — backend
+    // avvisar den med ett läsbart felmeddelande om den är för stor.
+    img.onerror = ()=> resolve({dataUrl, mediaType: mediaTypeFromDataUrl(dataUrl)});
+    img.src = dataUrl;
+  });
+}
+
 function handleScanUpload(e){
   const file = e.target.files[0];
   if(!file) return;
   const reader = new FileReader();
   reader.onload = ev=>{
-    scanImageBase64 = ev.target.result.split(',')[1];
-    document.getElementById('scanUploadPrompt').style.display = 'none';
-    document.getElementById('scanPreviewWrap').style.display = '';
-    document.getElementById('scanPreviewImg').src = ev.target.result;
-    analyzeShelfPhoto(file.type || 'image/jpeg');
+    downscaleForScan(ev.target.result).then(({dataUrl, mediaType})=>{
+      scanImageBase64 = dataUrl.split(',')[1];
+      document.getElementById('scanUploadPrompt').style.display = 'none';
+      document.getElementById('scanPreviewWrap').style.display = '';
+      document.getElementById('scanPreviewImg').src = dataUrl;
+      analyzeShelfPhoto(mediaType);
+    });
   };
   reader.readAsDataURL(file);
 }
@@ -2913,7 +2952,10 @@ async function analyzeShelfPhoto(mediaType){
     const parsed = JSON.parse(text);
     renderScanResults(parsed);
   }catch(err){
-    resultsBox.innerHTML = `<div class="scan-error"><b>AI-bildanalysen är inte tillgänglig just nu.</b> Det här kräver att backend-funktionen (netlify/functions/analyze-golf-balls.js) är korrekt uppsatt med en giltig API-nyckel. Skriv istället bollens namn i sökrutan nedan.</div>`;
+    // Backend skickar läsbara felmeddelanden (för stor bild, för många
+    // förfrågningar, nyckel saknas) — visa dem istället för att svälja dem.
+    const detail = err && err.message ? `<br><small>${escapeHTML(err.message)}</small>` : '';
+    resultsBox.innerHTML = `<div class="scan-error"><b>AI-bildanalysen är inte tillgänglig just nu.</b> Skriv istället bollens namn i sökrutan nedan.${detail}</div>`;
   }
 }
 function renderScanResults(parsed){

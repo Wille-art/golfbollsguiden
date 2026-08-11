@@ -1,0 +1,9 @@
+{
+  "name": "golfbollsguiden",
+  "private": true,
+  "type": "module",
+  "description": "Statisk jämförelsesajt för golfbollar, med en Netlify-funktion för AI-bildanalys.",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.110.0"
+  }
+}

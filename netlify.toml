@@ -1,0 +1,14 @@
+[build]
+  # Statisk sajt — inget byggsteg. Netlify kör ändå npm install eftersom
+  # package.json finns, vilket är så funktionen får sitt Anthropic-beroende.
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

@@ -4,3 +4,5 @@ golfbollsguiden.html
 final.html
 site/
 .DS_Store
+node_modules/
+.netlify/
