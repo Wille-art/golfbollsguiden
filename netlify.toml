@@ -1,6 +1,9 @@
 [build]
-  # Statisk sajt — inget byggsteg. Netlify kör ändå npm install eftersom
-  # package.json finns, vilket är så funktionen får sitt Anthropic-beroende.
+  # golfbollsguiden_final.html är källfilen du redigerar; index.html är den
+  # publicerade kopian. Netlify gör kopian vid varje deploy, så en glömd
+  # kopiering lokalt kan inte längre få sajten att ligga kvar på en gammal
+  # version. Byter du namn på källfilen måste den här raden ändras med.
+  command = "cp golfbollsguiden_final.html index.html"
   publish = "."
   functions = "netlify/functions"
 

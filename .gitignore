@@ -1,8 +1,9 @@
+# Arbetsmaterial som inte hör till den publicerade sajten
 Design.pdf
 mobil*
-golfbollsguiden.html
-final.html
 site/
-.DS_Store
+
+# Byggartefakter och skräp
 node_modules/
 .netlify/
+.DS_Store
