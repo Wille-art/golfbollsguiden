@@ -1,14 +1,11 @@
 User-agent: *
 Allow: /
 
-# ─── LANSERING: ta bort raden nedan när sajten ska gå live ───
-# Under Coming Soon-perioden serveras / av coming-soon.html, medan fulla sajten
-# ligger kvar på /index.html för granskning. Utan den här raden kan sökmotorer
-# indexera den ogranskade sajten och konkurrera med Coming Soon-sidan.
+# Under lanseringsfasen publiceras bara Coming Soon-sidan, så det finns inget
+# annat att indexera — den tidigare raden "Disallow: /index.html" behövs inte
+# längre, eftersom fulla sajten inte laddas upp alls (se netlify.toml).
 #
-# Medvetet robots.txt och INTE en noindex-tagg i index.html: glömmer du en
-# bortglömd Disallow-rad här händer nästan inget, eftersom den publika adressen
-# efter lansering är / och den är tillåten. En bortglömd noindex hade däremot
-# gjort hela sajten osynlig i Google efter lansering.
-Disallow: /index.html
-# ─────────────────────────────────────────────────────────────
+# Allow: / är rätt både nu och efter lansering: efter lansering ligger fulla
+# sajten på / och ska indexeras. Medvetet robots.txt och inte en noindex-tagg i
+# HTML-filen — en bortglömd noindex hade gjort hela sajten osynlig i Google
+# efter lansering, vilket är ett mycket dyrare misstag än det omvända.

@@ -4,6 +4,13 @@ mobil*
 site/
 
 # Byggartefakter och skräp
+dist/
 node_modules/
 .netlify/
 .DS_Store
+
+# index.html är en ren kopia av golfbollsguiden_final.html som bygget skapar i
+# dist/. Den låg tidigare incheckad i roten, och eftersom Netlify publicerade
+# roten låg fulla sajten öppet på /index.html. Håll den utanför git så kan den
+# läckan inte uppstå igen: källfilen är golfbollsguiden_final.html.
+index.html

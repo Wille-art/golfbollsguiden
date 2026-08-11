@@ -1,26 +1,24 @@
 [build]
-  # golfbollsguiden_final.html är källfilen du redigerar; index.html är den
-  # publicerade kopian. Netlify gör kopian vid varje deploy, så en glömd
-  # kopiering lokalt kan inte längre få sajten att ligga kvar på en gammal
-  # version. Byter du namn på källfilen måste den här raden ändras med.
-  command = "cp golfbollsguiden_final.html index.html"
-  publish = "."
+  # LANSERINGSFAS: bara Coming Soon-sidan publiceras.
+  #
+  # Bygget skapar dist/ från grunden och kopierar dit enbart coming-soon.html
+  # (som index.html) och robots.txt. golfbollsguiden_final.html kopieras aldrig
+  # dit, så fulla sajten finns inte på internet — inte på /index.html, inte på
+  # någon gissningsbar adress, inte alls. Det är skillnaden mot att dölja den
+  # med en rewrite: en regel kan sluta gälla, men en fil som aldrig laddats upp
+  # kan inte läcka.
+  #
+  # Granska fulla sajten lokalt genom att öppna golfbollsguiden_final.html
+  # direkt i webbläsaren.
+  #
+  # VID LANSERING: byt ut command mot den bortkommenterade raden nedan.
+  #   command = "rm -rf dist && mkdir -p dist && cp golfbollsguiden_final.html dist/index.html && cp robots.txt dist/"
+  command = "rm -rf dist && mkdir -p dist && cp coming-soon.html dist/index.html && cp robots.txt dist/"
+  publish = "dist"
   functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
-
-# ─── LANSERING: ta bort hela det här blocket när sajten ska gå live ───
-# Visar Coming Soon på roten. status = 200 är en rewrite, inte en redirect —
-# adressen i webbläsaren förblir "/". force = true krävs eftersom index.html
-# finns som riktig fil och annars vinner över regeln.
-# Fulla sajten går att granska på /index.html så länge.
-[[redirects]]
-  from = "/"
-  to = "/coming-soon.html"
-  status = 200
-  force = true
-# ──────────────────────────────────────────────────────────────────────
 
 [[headers]]
   for = "/*"
