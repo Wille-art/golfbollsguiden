@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golfbollsguiden — snart här</title>
+<meta name="description" content="Golfbollsguiden jämför 52 golfbollar från 20 tillverkare — distans, spinn, känsla och hållbarhet. Vi öppnar snart.">
+<meta name="robots" content="index, follow">
+<!-- Sidan serveras på roten via rewrite i netlify.toml, så canonical är roten. -->
+<link rel="canonical" href="https://golfbollsguiden.se/">
+<meta property="og:url" content="https://golfbollsguiden.se/">
+<meta property="og:title" content="Golfbollsguiden — snart här">
+<meta property="og:description" content="Oberoende jämförelse av 52 golfbollar. Forskningsbaserad testmetodik, aldrig sponsrad placering. Vi öppnar snart.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:site_name" content="Golfbollsguiden">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-bg:#0A160F;
+  --green-panel:#243A2F;
+  --invert:#F1ECDD;
+  --invert-soft:#A9B6AC;
+  --brass:#C9A468;
+  --brass-light:#E4D2A8;
+  --fairway-deep:#12211B;
+  --line-invert:rgba(241,236,221,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--green-bg);
+  color:var(--invert);
+  font-family:'IBM Plex Sans',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+  /* Mjuk mässingsglöd bakom innehållet, samma känsla som sajtens mörka sektioner */
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,164,104,.13), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(36,58,47,.55), transparent 70%);
+  background-repeat:no-repeat;
+}
+.wrap{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:48px 24px;
+  max-width:660px;
+  margin:0 auto;
+}
+.ball{width:64px;height:64px;margin-bottom:28px;}
+.eyebrow{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--brass);
+  margin-bottom:18px;
+}
+h1{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:900;
+  font-size:clamp(38px,8vw,68px);
+  line-height:1.04;
+  letter-spacing:-.02em;
+  margin-bottom:20px;
+}
+h1 em{font-style:italic;font-weight:400;color:var(--brass-light);}
+.lede{
+  font-size:clamp(16px,2.4vw,19px);
+  line-height:1.6;
+  color:var(--invert-soft);
+  max-width:48ch;
+  margin:0 auto 14px;
+}
+.detail{
+  font-size:14.5px;
+  line-height:1.6;
+  color:var(--invert-soft);
+  max-width:46ch;
+  margin:0 auto 36px;
+  opacity:.82;
+}
+.signup{
+  display:flex;
+  gap:10px;
+  width:100%;
+  max-width:440px;
+  margin-bottom:14px;
+}
+.signup input{
+  flex:1;
+  min-width:0;
+  background:rgba(241,236,221,.07);
+  border:1px solid var(--line-invert);
+  color:var(--invert);
+  font:inherit;
+  font-size:15px;
+  padding:14px 16px;
+  border-radius:9px;
+}
+.signup input::placeholder{color:var(--invert-soft);opacity:.7;}
+.signup input:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:transparent;}
+.signup button{
+  background:var(--brass);
+  color:var(--fairway-deep);
+  border:none;
+  font:inherit;
+  font-size:14.5px;
+  font-weight:600;
+  padding:14px 24px;
+  border-radius:9px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background .15s ease;
+}
+.signup button:hover{background:var(--brass-light);}
+.signup button:disabled{cursor:default;opacity:.85;}
+.fineprint{font-size:12.5px;color:var(--invert-soft);opacity:.65;}
+.status{font-size:13.5px;color:var(--brass-light);min-height:1.3em;margin-bottom:6px;}
+.hp{position:absolute;left:-9999px;}
+.facts{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:0 34px;
+  margin-top:44px;
+  padding-top:30px;
+  border-top:1px solid var(--line-invert);
+  width:100%;
+  max-width:520px;
+}
+.fact{padding:8px 0;}
+.fact b{
+  display:block;
+  font-family:'Fraunces',Georgia,serif;
+  font-size:26px;
+  font-weight:600;
+  color:var(--brass);
+  line-height:1.1;
+}
+.fact span{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--invert-soft);}
+footer{
+  text-align:center;
+  padding:24px;
+  font-size:12.5px;
+  color:var(--invert-soft);
+  opacity:.6;
+}
+@media (max-width:520px){
+  .signup{flex-direction:column;}
+  .signup button{width:100%;}
+  .facts{gap:0 24px;}
+}
+@media (prefers-reduced-motion:no-preference){
+  .wrap>*{animation:rise .7s cubic-bezier(.2,.7,.3,1) backwards;}
+  .wrap>*:nth-child(1){animation-delay:.02s}
+  .wrap>*:nth-child(2){animation-delay:.08s}
+  .wrap>*:nth-child(3){animation-delay:.14s}
+  .wrap>*:nth-child(4){animation-delay:.2s}
+  .wrap>*:nth-child(5){animation-delay:.26s}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <svg class="ball" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="30" fill="#F1ECDD"/>
+    <circle cx="32" cy="32" r="30" fill="none" stroke="#C9A468" stroke-width="1.5" opacity=".55"/>
+    <g fill="#243A2F" opacity=".22">
+      <circle cx="32" cy="15" r="3"/><circle cx="21" cy="21" r="3"/><circle cx="43" cy="21" r="3"/>
+      <circle cx="15" cy="32" r="3"/><circle cx="32" cy="32" r="3"/><circle cx="49" cy="32" r="3"/>
+      <circle cx="21" cy="43" r="3"/><circle cx="43" cy="43" r="3"/><circle cx="32" cy="49" r="3"/>
+    </g>
+  </svg>
+
+  <p class="eyebrow">Öppnar snart</p>
+
+  <h1>Hitta din <em>perfekta</em> golfboll</h1>
+
+  <p class="lede">
+    Vi jämför 52 golfbollar från 20 tillverkare sida vid sida — distans, spinn, känsla och hållbarhet.
+  </p>
+  <p class="detail">
+    Forskningsbaserad testmetodik, äkta recensioner och aldrig sponsrad placering.
+    Lämna din mejl om du vill veta när vi öppnar.
+  </p>
+
+  <div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <!-- Netlify Forms fångar den här posten automatiskt vid deploy. Formuläret
+         fungerar även utan JS: Netlify tar emot en vanlig POST till samma sida. -->
+    <!-- action pekar på den riktiga filvägen, inte "/". Rewriten på roten skulle
+         annars kunna komma i vägen för Netlifys formulärmottagning. -->
+    <form class="signup" id="waitlist" name="coming-soon" action="/coming-soon.html" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <p class="hp"><label>Lämna tomt: <input name="bot-field"></label></p>
+      <input type="email" name="email" placeholder="din@mejl.se" required autocomplete="email" aria-label="Din mejladress">
+      <button type="submit">Håll mig uppdaterad</button>
+    </form>
+    <p class="fineprint">Ingen spam. Bara ett mejl när sajten är live.</p>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>52</b><span>bollar</span></div>
+    <div class="fact"><b>20</b><span>tillverkare</span></div>
+    <div class="fact"><b>0</b><span>sponsrade placeringar</span></div>
+  </div>
+</main>
+
+<footer>© <span id="year">2026</span> Golfbollsguiden</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.getElementById('waitlist').addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById('status');
+  const button = form.querySelector('button');
+  const input = form.querySelector('input[type=email]');
+
+  button.disabled = true;
+  button.textContent = 'Skickar…';
+
+  // Netlify Forms tar emot en form-encoded POST till sidans egen URL.
+  const body = new URLSearchParams({'form-name': 'coming-soon', email: input.value}).toString();
+
+  fetch(form.getAttribute('action') || window.location.pathname, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: body
+  }).then(function(res){
+    if(!res.ok) throw new Error('Kunde inte spara adressen.');
+    status.textContent = 'Tack! Vi hör av oss när vi öppnar.';
+    form.style.display = 'none';
+  }).catch(function(){
+    // Misslyckas anropet får användaren veta det — adressen försvinner inte tyst.
+    status.textContent = 'Något gick fel. Försök igen om en stund.';
+    button.disabled = false;
+    button.textContent = 'Håll mig uppdaterad';
+  });
+});
+</script>
+
+</body>
+</html>

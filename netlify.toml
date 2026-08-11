@@ -7,6 +7,18 @@
 [functions]
   node_bundler = "esbuild"
 
+# ─── LANSERING: ta bort hela det här blocket när sajten ska gå live ───
+# Visar Coming Soon på roten. status = 200 är en rewrite, inte en redirect —
+# adressen i webbläsaren förblir "/". force = true krävs eftersom index.html
+# finns som riktig fil och annars vinner över regeln.
+# Fulla sajten går att granska på /index.html så länge.
+[[redirects]]
+  from = "/"
+  to = "/coming-soon.html"
+  status = 200
+  force = true
+# ──────────────────────────────────────────────────────────────────────
+
 [[headers]]
   for = "/*"
   [headers.values]

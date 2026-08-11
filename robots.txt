@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# ─── LANSERING: ta bort raden nedan när sajten ska gå live ───
+# Under Coming Soon-perioden serveras / av coming-soon.html, medan fulla sajten
+# ligger kvar på /index.html för granskning. Utan den här raden kan sökmotorer
+# indexera den ogranskade sajten och konkurrera med Coming Soon-sidan.
+#
+# Medvetet robots.txt och INTE en noindex-tagg i index.html: glömmer du en
+# bortglömd Disallow-rad här händer nästan inget, eftersom den publika adressen
+# efter lansering är / och den är tillåten. En bortglömd noindex hade däremot
+# gjort hela sajten osynlig i Google efter lansering.
+Disallow: /index.html
+# ─────────────────────────────────────────────────────────────
