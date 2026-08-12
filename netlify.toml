@@ -15,10 +15,9 @@
   #   command = "rm -rf dist && mkdir -p dist && cp golfbollsguiden_final.html dist/index.html && cp robots.txt dist/"
   command = "rm -rf dist && mkdir -p dist && cp coming-soon.html dist/index.html && cp robots.txt dist/"
   publish = "dist"
-  functions = "netlify/functions"
 
-[functions]
-  node_bundler = "esbuild"
+# Ingen functions-katalog längre: bildskanningen körs helt i webbläsaren med
+# Tesseract.js, så sajten är rent statisk och kostar inget per besökare.
 
 [[headers]]
   for = "/*"

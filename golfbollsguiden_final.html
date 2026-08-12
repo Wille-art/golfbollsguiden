@@ -2066,7 +2066,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
     <span class="section-sub">Ta en bild på golfbollarna i butiken — vi läser av synlig text/logotyper och jämför mot katalogen</span>
   </div>
   <div class="scan-caveat">
-    <b>Viktigt att veta innan du testar:</b> golfbollar ser nästan identiska ut rent visuellt — det enda som faktiskt går att identifiera är text och logotyper som syns tydligt i bilden, oftast på förpackningen snarare än på själva bollen. Ju skarpare och rakare bild, desto bättre resultat. Vi kan inte garantera en korrekt identifiering — se alltid resultatet som ett förslag att verifiera själv, inte en absolut sanning.
+    <b>Viktigt att veta innan du testar:</b> golfbollar ser nästan identiska ut rent visuellt — det enda som faktiskt går att identifiera är text och logotyper som syns tydligt i bilden, oftast på förpackningen snarare än på själva bollen. Ju skarpare och rakare bild, desto bättre resultat. Vi kan inte garantera en korrekt identifiering — se alltid resultatet som ett förslag att verifiera själv, inte en absolut sanning. Avläsningen sker i din egen webbläsare; bilden laddas aldrig upp någonstans.
   </div>
   <div class="scan-upload-box" id="scanUploadBox">
     <input type="file" id="scanFileInput" accept="image/*" capture="environment" onchange="handleScanUpload(event)" style="display:none;">
@@ -2083,8 +2083,8 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 
   <div class="scan-manual">
     <span class="eyebrow">Alltid tillgängligt</span>
-    <h4>Hittar AI:n inte rätt boll? Sök manuellt istället</h4>
-    <p>Bildanalysen kräver en fungerande AI-anslutning som inte alltid är tillgänglig beroende på var den här sidan körs. Sök här så fungerar det oavsett.</p>
+    <h4>Hittade avläsningen inte rätt boll? Sök manuellt istället</h4>
+    <p>Textavläsningen har svårt för sneda vinklar, reflexer i plasten och liten text. Sök här så fungerar det oavsett.</p>
     <div class="scan-manual-search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       <input type="text" id="scanManualInput" placeholder="Sök t.ex. Titleist Pro V1x…" oninput="scanManualSearch()">
@@ -2855,13 +2855,20 @@ document.addEventListener('input', e=>{
   if(e.target.id==='pfSwing') document.getElementById('pfSwingLbl').textContent = e.target.value;
 });
 
-/* ============ SHELF PHOTO SCANNER (calls the Claude API directly — real vision, not a mock) ============ */
-let scanImageBase64 = null;
+/* ============ SHELF PHOTO SCANNER (OCR lokalt i webbläsaren — ingen server, ingen kostnad) ============ */
+// Sidan läser av texten på förpackningen med Tesseract.js direkt i besökarens
+// webbläsare och matchar den mot BALLS-katalogen. Bilden lämnar aldrig
+// telefonen, det finns ingen backend att drifta, och varje skanning är gratis.
+//
+// Avvägningen mot en visionmodell: OCR läser stora tydliga märkestexter bra
+// ("TITLEIST PRO V1"), men är sämre på sneda vinklar, reflexer i plasten och
+// liten text. Därför är den manuella sökrutan kvar som jämbördig väg, inte som
+// nödlösning.
+let scanImageDataUrl = null;
 
-// En mobilkamerabild blir 4–8 MB, och base64 gör den ~33% större igen — det
-// spränger Netlify-funktionens payload-gräns innan backend ens körs. Vi skalar
-// ner till 1600px längsta sida, vilket räcker gott för att läsa modellnamnet på
-// en boll eller förpackning, och landar på några hundra kB.
+// En mobilkamerabild blir 4–8 MB och tar onödigt lång tid att läsa av på en
+// telefon. Vi skalar ner till 1600px längsta sida — tillräckligt för att läsa
+// modellnamnet på en förpackning, men snabbt nog att kännas responsivt.
 const SCAN_MAX_EDGE = 1600;
 const SCAN_MAX_BYTES = 4000000;
 
@@ -2899,12 +2906,12 @@ function handleScanUpload(e){
   if(!file) return;
   const reader = new FileReader();
   reader.onload = ev=>{
-    downscaleForScan(ev.target.result).then(({dataUrl, mediaType})=>{
-      scanImageBase64 = dataUrl.split(',')[1];
+    downscaleForScan(ev.target.result).then(({dataUrl})=>{
+      scanImageDataUrl = dataUrl;
       document.getElementById('scanUploadPrompt').style.display = 'none';
       document.getElementById('scanPreviewWrap').style.display = '';
       document.getElementById('scanPreviewImg').src = dataUrl;
-      analyzeShelfPhoto(mediaType);
+      analyzeShelfPhoto(dataUrl);
     });
   };
   reader.readAsDataURL(file);
@@ -2927,49 +2934,157 @@ function scanManualSearch(){
 }
 
 function resetScan(){
-  scanImageBase64 = null;
+  scanImageDataUrl = null;
   document.getElementById('scanUploadPrompt').style.display = '';
   document.getElementById('scanPreviewWrap').style.display = 'none';
   document.getElementById('scanFileInput').value = '';
   document.getElementById('scanResults').innerHTML = '';
 }
-async function analyzeShelfPhoto(mediaType){
+// Tesseract.js väger ett par megabyte och hämtas därför först när någon
+// faktiskt trycker på skanna — aldrig vid sidladdning. Promisen cachas så att
+// andra skanningen går direkt.
+const TESSERACT_SRC = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
+let tesseractPromise = null;
+
+function loadTesseract(){
+  if(tesseractPromise) return tesseractPromise;
+  tesseractPromise = new Promise((resolve, reject)=>{
+    const script = document.createElement('script');
+    script.src = TESSERACT_SRC;
+    script.async = true;
+    script.onload = ()=> window.Tesseract
+      ? resolve(window.Tesseract)
+      : reject(new Error('Textavläsningen kunde inte startas.'));
+    script.onerror = ()=>{
+      // Nollställ cachen så att ett nytt försök faktiskt får hämta om skriptet
+      // istället för att återanvända den trasiga promisen.
+      tesseractPromise = null;
+      reject(new Error('Kunde inte hämta textavläsningen. Kontrollera din uppkoppling.'));
+    };
+    document.head.appendChild(script);
+  });
+  return tesseractPromise;
+}
+
+// Tesseract.recognize() startar och river en ny worker per anrop, vilket kostar
+// flera sekunder varje gång. Vi håller en worker vid liv istället — någon som
+// jämför fyra förpackningar i en butik betalar uppstarten en gång, inte fyra.
+//
+// Loggern måste bindas vid workerns skapande, så framstegsvisningen går via en
+// modulnivå-variabel som analyzeShelfPhoto sätter före varje avläsning.
+let scanWorkerPromise = null;
+let scanProgressHandler = null;
+
+function getScanWorker(){
+  if(scanWorkerPromise) return scanWorkerPromise;
+  scanWorkerPromise = loadTesseract()
+    .then(T=> T.createWorker('eng', 1, {
+      logger: m=>{
+        if(m && m.status === 'recognizing text' && scanProgressHandler){
+          scanProgressHandler(m.progress || 0);
+        }
+      }
+    }))
+    .catch(err=>{ scanWorkerPromise = null; throw err; });
+  return scanWorkerPromise;
+}
+
+// OCR förväxlar regelbundet 0/O, 1/I, 5/S och 8/B, och tappar ofta mellanslag.
+// Vi viker ihop BÅDA sidor av jämförelsen till samma teckenuppsättning, så att
+// "TP5" och "TPS" blir identiska strängar — det spelar ingen roll åt vilket
+// håll avläsningen missar, så länge katalogen viks likadant.
+function scanFold(s){
+  return String(s).toUpperCase()
+    .replace(/[ÅÄ]/g,'A').replace(/Ö/g,'O')
+    .replace(/[^A-Z0-9]/g,'')
+    .replace(/0/g,'O').replace(/1/g,'I').replace(/5/g,'S').replace(/8/g,'B');
+}
+
+// Matchar avläst text mot katalogen och returnerar exakt den form som
+// renderScanResults redan förväntar sig: {identified:[{brand,name,confidence}], note}.
+function matchCatalogFromText(rawText){
+  const folded = scanFold(rawText);
+  if(!folded) return {identified: [], note: 'Ingen läsbar text hittades i bilden.'};
+
+  const hits = [];
+  const brandsSeen = new Set();
+
+  BALLS.forEach(b=>{
+    const fBrand = scanFold(b.brand);
+    const fName  = scanFold(b.name);
+    const brandHit = fBrand.length >= 3 && folded.includes(fBrand);
+    if(brandHit) brandsSeen.add(b.brand);
+    // Korta modellnamn som "e12" träffar på för mycket brus på egen hand och
+    // kräver att märket syns i bilden också.
+    const nameHit = fName.length >= 3 && folded.includes(fName) && (fName.length >= 5 || brandHit);
+    if(nameHit) hits.push({ball: b, fName, confidence: brandHit ? 'hög' : 'medel'});
+  });
+
+  // "Pro V1x" innehåller "Pro V1" som delsträng, så en enda förpackning skulle
+  // annars rapporteras som två bollar. Behåll den längsta träffen per märke.
+  hits.sort((a,b)=> b.fName.length - a.fName.length);
+  const kept = [];
+  hits.forEach(h=>{
+    const covered = kept.some(k=> k.ball.brand === h.ball.brand && k.fName.includes(h.fName));
+    if(!covered) kept.push(h);
+  });
+
+  const identified = kept.map(h=>({brand: h.ball.brand, name: h.ball.name, confidence: h.confidence}));
+  let note;
+  if(identified.length){
+    note = `Läste av ${identified.length} ${identified.length === 1 ? 'boll' : 'bollar'} ur bilden.`;
+  } else if(brandsSeen.size){
+    note = `Kunde läsa märket (${[...brandsSeen].join(', ')}) men inte modellnamnet.`;
+  } else {
+    note = 'Texten gick inte att läsa tillräckligt tydligt.';
+  }
+  return {identified, note};
+}
+
+async function analyzeShelfPhoto(dataUrl){
   const resultsBox = document.getElementById('scanResults');
-  resultsBox.innerHTML = `<div class="scan-loading"><span class="spinner"></span> Läser av bilden…</div>`;
-  const catalogNames = BALLS.map(b=>`${b.brand} ${b.name}`).join(', ');
+  const setStatus = msg=>{
+    resultsBox.innerHTML = `<div class="scan-loading"><span class="spinner"></span> ${escapeHTML(msg)}</div>`;
+  };
+  setStatus('Förbereder textavläsningen…');
+
   try{
-    // Calls OUR OWN backend function (Netlify Function), not Anthropic's API
-    // directly — the real API key lives only on the server, never in this
-    // file. See netlify/functions/analyze-golf-balls.js for the server side.
-    const response = await fetch("/.netlify/functions/analyze-golf-balls", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ imageBase64: scanImageBase64, mediaType, catalogNames })
-    });
-    const data = await response.json();
-    if(!response.ok) throw new Error(data.error || 'Serverfel');
-    const text = (data.content||[]).map(c=>c.text||'').join('').replace(/```json|```/g,'').trim();
-    const parsed = JSON.parse(text);
-    renderScanResults(parsed);
+    const worker = await getScanWorker();
+    setStatus('Läser av bilden…');
+    // Avläsningen tar några sekunder på en telefon — visa att det händer något
+    // istället för en stillastående spinner.
+    scanProgressHandler = p=> setStatus(`Läser av bilden… ${Math.round(p * 100)}%`);
+    const {data} = await worker.recognize(dataUrl);
+    renderScanResults(matchCatalogFromText(data && data.text ? data.text : ''));
   }catch(err){
-    // Backend skickar läsbara felmeddelanden (för stor bild, för många
-    // förfrågningar, nyckel saknas) — visa dem istället för att svälja dem.
     const detail = err && err.message ? `<br><small>${escapeHTML(err.message)}</small>` : '';
-    resultsBox.innerHTML = `<div class="scan-error"><b>AI-bildanalysen är inte tillgänglig just nu.</b> Skriv istället bollens namn i sökrutan nedan.${detail}</div>`;
+    resultsBox.innerHTML = `<div class="scan-error"><b>Textavläsningen kunde inte köras.</b> Skriv istället bollens namn i sökrutan nedan.${detail}</div>`;
+  }finally{
+    // Koppla loss framstegsvisningen, annars kan en sen logghändelse skriva
+    // "Läser av bilden… 40%" över ett resultat som redan visas.
+    scanProgressHandler = null;
   }
 }
 function renderScanResults(parsed){
   const resultsBox = document.getElementById('scanResults');
   const identified = parsed.identified || [];
-  // fuzzy-match each AI-identified name against our real catalog — only show
-  // balls we can actually confirm exist in the data, never invent a match
+  // Slå upp varje avläst namn i den riktiga katalogen — visa bara bollar vi
+  // kan bekräfta finns i datan, hitta aldrig på en träff.
+  //
+  // Exakt match måste testas först: "Titleist Pro V1" är en delsträng av
+  // "Titleist Pro V1x", och eftersom Pro V1x ligger före Pro V1 i BALLS skulle
+  // en ren includes-sökning svara fel boll på en korrekt avläsning.
+  const seenIds = new Set();
   const matched = identified.map(id=>{
-    const q = `${id.brand} ${id.name}`.toLowerCase();
-    const ball = BALLS.find(b=>{
-      const full = `${b.brand} ${b.name}`.toLowerCase();
-      return full.includes(id.name.toLowerCase()) || (b.brand.toLowerCase()===id.brand.toLowerCase() && b.name.toLowerCase().includes(id.name.toLowerCase().split(' ')[0]));
-    });
-    return ball ? {ball, confidence:id.confidence} : null;
+    const brand = id.brand.toLowerCase(), name = id.name.toLowerCase();
+    const ball = BALLS.find(b=> b.brand.toLowerCase()===brand && b.name.toLowerCase()===name)
+      || BALLS.find(b=>{
+        const full = `${b.brand} ${b.name}`.toLowerCase();
+        return full.includes(name) || (b.brand.toLowerCase()===brand && b.name.toLowerCase().includes(name.split(' ')[0]));
+      });
+    if(!ball || seenIds.has(ball.id)) return null;
+    seenIds.add(ball.id);
+    return {ball, confidence:id.confidence};
   }).filter(Boolean);
 
   if(!matched.length){

@@ -2,8 +2,5 @@
   "name": "golfbollsguiden",
   "private": true,
   "type": "module",
-  "description": "Statisk jämförelsesajt för golfbollar, med en Netlify-funktion för AI-bildanalys.",
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.110.0"
-  }
+  "description": "Statisk jämförelsesajt för golfbollar. Bildskanningen läser av text lokalt i webbläsaren med Tesseract.js — ingen backend och inga beroenden att installera."
 }
