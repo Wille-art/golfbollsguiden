@@ -6,7 +6,8 @@
 <title>Golfbollsguiden — snart här</title>
 <meta name="description" content="Golfbollsguiden jämför 52 golfbollar från 20 tillverkare — distans, spinn, känsla och hållbarhet. Vi öppnar snart.">
 <meta name="robots" content="index, follow">
-<!-- Sidan serveras på roten via rewrite i netlify.toml, så canonical är roten. -->
+<!-- Bygget kopierar den här filen till dist/index.html, så sidan ligger på
+     roten och canonical pekar dit. -->
 <link rel="canonical" href="https://golfbollsguiden.se/">
 <meta property="og:url" content="https://golfbollsguiden.se/">
 <meta property="og:title" content="Golfbollsguiden — snart här">
@@ -199,9 +200,10 @@ footer{
     <p class="status" id="status" role="status" aria-live="polite"></p>
     <!-- Netlify Forms fångar den här posten automatiskt vid deploy. Formuläret
          fungerar även utan JS: Netlify tar emot en vanlig POST till samma sida. -->
-    <!-- action pekar på den riktiga filvägen, inte "/". Rewriten på roten skulle
-         annars kunna komma i vägen för Netlifys formulärmottagning. -->
-    <form class="signup" id="waitlist" name="coming-soon" action="/coming-soon.html" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <!-- action är "/" eftersom bygget lägger sidan på roten som index.html.
+         Den pekade tidigare på /coming-soon.html, men den sökvägen finns inte
+         i dist/ och gav 404, så inskickade adresser försvann. -->
+    <form class="signup" id="waitlist" name="coming-soon" action="/" method="POST" data-netlify="true" netlify-honeypot="bot-field">
       <p class="hp"><label>Lämna tomt: <input name="bot-field"></label></p>
       <input type="email" name="email" placeholder="din@mejl.se" required autocomplete="email" aria-label="Din mejladress">
       <button type="submit">Håll mig uppdaterad</button>
