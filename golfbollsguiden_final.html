@@ -249,6 +249,18 @@ button:active{transform:scale(.96);}
 .hub-tile h5{font-size:17px;font-family:'Fraunces',serif;font-weight:560;}
 .hub-tile p{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.4;}
 
+/* ---------- HOME: FLAT DARK GREEN BACKDROP ---------- */
+/* The shared body backdrop carries a warm brass glow (--green-glow) that reads
+   as brown across the top of a page. The home page is meant to be solid dark
+   green from the nav all the way down to the footer, so the glow is dropped
+   there in all three places it shows: the body backdrop (which also tints the
+   translucent nav), the hero, and the featured card. Other pages keep it.
+   Scoped with :has() rather than a JS-toggled body class so the flat green is
+   already painted on first render, before any script runs. */
+body:has(#page-home.active){background:var(--green-bg);}
+body:has(#page-home.active) .hero{background:none;}
+body:has(#page-home.active) .featured-card::after{display:none;}
+
 /* ---------- REVIEWS HUB ---------- */
 .reviews-hub{padding:20px 0 70px;}
 .rev-filter-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px;}
