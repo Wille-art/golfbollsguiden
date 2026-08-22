@@ -249,17 +249,23 @@ button:active{transform:scale(.96);}
 .hub-tile h5{font-size:17px;font-family:'Fraunces',serif;font-weight:560;}
 .hub-tile p{font-size:12.5px;color:var(--ink-soft);margin-top:4px;line-height:1.4;}
 
-/* ---------- HOME: FLAT DARK GREEN BACKDROP ---------- */
+/* ---------- HOME ON PHONES: FLAT DARK GREEN BACKDROP ---------- */
 /* The shared body backdrop carries a warm brass glow (--green-glow) that reads
-   as brown across the top of a page. The home page is meant to be solid dark
-   green from the nav all the way down to the footer, so the glow is dropped
-   there in all three places it shows: the body backdrop (which also tints the
-   translucent nav), the hero, and the featured card. Other pages keep it.
+   as brown. On desktop it sits in the top-left corner and fades out across the
+   width, so it stays a subtle accent and is kept. At phone widths the hero
+   fills the whole viewport, so the same glow washes the entire first screen
+   brown — there it is dropped, in all three places it shows on the home page:
+   the body backdrop (which also tints the translucent nav and the open mobile
+   menu), the hero, and the featured card. 700px is the breakpoint the bottom
+   tab bar and the rest of the phone chrome already use. Every other page keeps
+   the glow at every width.
    Scoped with :has() rather than a JS-toggled body class so the flat green is
    already painted on first render, before any script runs. */
-body:has(#page-home.active){background:var(--green-bg);}
-body:has(#page-home.active) .hero{background:none;}
-body:has(#page-home.active) .featured-card::after{display:none;}
+@media(max-width:700px){
+  body:has(#page-home.active){background:var(--green-bg);}
+  body:has(#page-home.active) .hero{background:none;}
+  body:has(#page-home.active) .featured-card::after{display:none;}
+}
 
 /* ---------- REVIEWS HUB ---------- */
 .reviews-hub{padding:20px 0 70px;}
