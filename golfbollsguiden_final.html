@@ -294,11 +294,18 @@ button:active{transform:scale(.96);}
   display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
   max-width:1240px;margin:0 auto;
 }
-.hero-inner{position:relative;grid-column:1;max-width:520px;}
+.hero-inner{position:relative;grid-column:1;max-width:556px;container-type:inline-size;}
 .hero-inner .eyebrow{color:var(--brass-light);}
-.hero h1{font-size:clamp(34px,4.4vw,58px);line-height:1.04;font-weight:700;letter-spacing:-.025em;color:var(--invert);}
+/* The headline is set on one line at every width. 9cqw is the largest
+   share of the container the text can take and still fit: Fraunces renders
+   it at up to ~10.7x the font size at small optical sizes, so 9% leaves a
+   4% margin. min() keeps the original clamp as the design ceiling and only
+   bites where the container is the tighter constraint. nowrap is safe here
+   because container-type contains the inline size, so the long line cannot
+   push the grid column wider. */
+.hero h1{font-size:min(clamp(34px,4.4vw,58px),9cqw);white-space:nowrap;line-height:1.04;font-weight:700;letter-spacing:-.025em;color:var(--invert);}
 .hero h1 em{font-style:normal;color:var(--brass-light);}
-.hero p{margin-top:20px;font-size:17px;line-height:1.6;color:var(--invert-soft);}
+.hero p{margin-top:20px;max-width:520px;font-size:17px;line-height:1.6;color:var(--invert-soft);}
 
 .hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
 .btn-primary{background:var(--brass);color:var(--fairway-deep);border:none;padding:15px 26px;border-radius:8px;font-size:14.5px;font-weight:700;transition:transform .15s,box-shadow .15s;}
@@ -1433,7 +1440,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
   .fav-btn::after,.compare-check::after{content:'';position:absolute;inset:-11px;}
 }
 @media(max-width:420px){
-  .hero h1{font-size:32px;}
+  .hero h1{font-size:min(32px,9cqw);}
   .logo-text{font-size:16px;}
   .nav-inner{padding:14px 16px;}
   .ball-grid{grid-template-columns:1fr;}
@@ -1572,7 +1579,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <section class="hero">
   <div class="hero-inner">
     <span class="eyebrow">Golfbollsguiden 2026</span>
-    <h1>Hitta <em>din perfekta</em> golfboll.</h1>
+    <h1>Hitta <em>din perfekta</em> boll.</h1>
     <p>Jämför alla stora modeller sida vid sida: distans, spinn, känsla och hållbarhet. Inget marknadsföringsspråk, bara data du kan lita på.</p>
 
     <div class="hero-actions">
