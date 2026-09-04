@@ -65,7 +65,7 @@
   --porcelain:#EFEBE1;
   --porcelain-dim:#E4DECC;
   --ink:#262E29;
-  --ink-soft:#676F6A;
+  --ink-soft:#5B635E;
   --fairway:#1F4032;
   --fairway-deep:#12211B;
   --green-bg:#0A160F;
@@ -74,6 +74,7 @@
   --invert:#F1ECDD;
   --invert-soft:#A9B6AC;
   --brass:#C9A468;
+  --brass-ink:#8A6529;   /* mässing som textfärg på ljus botten — --brass ger bara 2.3:1 */
   --brass-light:#E4D2A8;
   --line:#DEDACD;
   --line-invert:rgba(241,236,221,.16);
@@ -122,6 +123,12 @@ img,svg{display:block;}
 button{font-family:inherit;cursor:pointer;transition:transform .12s ease;}
 button:active{transform:scale(.96);}
 :focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+/* Rubriken tar emot fokus vid varje vybyte så att skärmläsare och tangentbord
+   hamnar i innehållet i stället för kvar i navigeringen. Den ramen ska dock
+   inte ritas ut: den skulle blinka till efter varenda musklick i menyn, vilket
+   ser ut som ett fel. Fokusflytten finns kvar — bara markeringen tas bort, och
+   bara för det här ena programmatiska målet. */
+.page h1[tabindex="-1"]:focus,.page h1[tabindex="-1"]:focus-visible{outline:none;}
 .skip-link{
   position:absolute;top:-100px;left:12px;z-index:200;background:var(--brass);color:var(--fairway-deep);
   padding:12px 20px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:top .2s;
@@ -593,7 +600,7 @@ button:active{transform:scale(.96);}
 .science-card .eyebrow{color:var(--fairway);}
 .kb-card{background:var(--card);border-radius:16px;padding:24px;box-shadow:var(--shadow);cursor:pointer;transition:transform .18s;border-top:3px solid var(--brass);}
 .kb-card:hover{transform:translateY(-4px);}
-.kb-card .eyebrow{color:var(--brass);}
+.kb-card .eyebrow{color:var(--brass-ink);}
 .kb-card h5{font-size:16px;margin-top:8px;}
 .kb-card p{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.5;}
 .kb-card .kb-read{font-size:12px;font-weight:700;color:var(--fairway);margin-top:14px;display:block;}
@@ -743,9 +750,9 @@ button:active{transform:scale(.96);}
 .toplist-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
 .toplist-rank{
   position:absolute;top:14px;right:16px;font-family:'IBM Plex Mono',monospace;font-size:34px;font-weight:700;
-  color:var(--porcelain-dim);line-height:1;
+  color:#8E8876;line-height:1;
 }
-.toplist-card .eyebrow{color:var(--brass);}
+.toplist-card .eyebrow{color:var(--brass-ink);}
 .toplist-card h4{font-size:17px;margin-top:8px;}
 .toplist-card p{font-size:13px;color:var(--ink-soft);margin-top:6px;line-height:1.5;}
 .toplist-name{margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;}
