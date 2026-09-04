@@ -9,3 +9,5 @@ Allow: /
 # sajten på / och ska indexeras. Medvetet robots.txt och inte en noindex-tagg i
 # HTML-filen — en bortglömd noindex hade gjort hela sajten osynlig i Google
 # efter lansering, vilket är ett mycket dyrare misstag än det omvända.
+
+Sitemap: https://golfbollsguiden.se/sitemap.xml

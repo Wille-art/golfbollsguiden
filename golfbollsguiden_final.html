@@ -8,13 +8,19 @@
 <meta name="keywords" content="golfboll, golfbollar, jämför golfbollar, bästa golfboll, Titleist Pro V1, golfboll test, golfboll guide">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Golfbollsguiden">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A160F'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23F1ECDD'/%3E%3Cg fill='%230A160F' opacity='.28'%3E%3Ccircle cx='13' cy='13' r='1.3'/%3E%3Ccircle cx='19' cy='13' r='1.3'/%3E%3Ccircle cx='16' cy='16' r='1.3'/%3E%3Ccircle cx='13' cy='19' r='1.3'/%3E%3Ccircle cx='19' cy='19' r='1.3'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#0A160F">
 <link rel="canonical" href="https://golfbollsguiden.se/">
+<meta property="og:url" content="https://golfbollsguiden.se/">
+<meta property="og:image" content="https://golfbollsguiden.se/og-image.svg">
+<meta property="og:image:alt" content="Golfbollsguiden — jämför 52 golfbollar">
+<meta name="twitter:image" content="https://golfbollsguiden.se/og-image.svg">
 <meta property="og:title" content="Golfbollsguiden — Hitta din perfekta boll">
 <meta property="og:description" content="Jämför alla stora golfbollar sida vid sida och hitta din perfekta match på 30 sekunder. Forskningsbaserad, transparent, aldrig sponsrad placering.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="sv_SE">
 <meta property="og:site_name" content="Golfbollsguiden">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Golfbollsguiden — Hitta din perfekta boll">
 <meta name="twitter:description" content="Jämför 52 golfbollar sida vid sida — distans, spinn, känsla och hållbarhet, med forskning bakom varje slutsats.">
 <script type="application/ld+json">
@@ -80,6 +86,9 @@
   --shadow-green: 0 24px 60px -20px rgba(6,15,11,.6);
 }
 *{box-sizing:border-box;}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+}
 html{scroll-behavior:smooth;overflow-x:hidden;}
 body{
   margin:0;
@@ -618,7 +627,7 @@ button:active{transform:scale(.96);}
 .yearball-visual svg{width:170px;height:auto;filter:drop-shadow(0 22px 30px rgba(0,0,0,.45));}
 .yearball-body{position:relative;}
 .yearball-body .eyebrow{color:var(--brass-light);}
-.yearball-body h2{color:var(--invert);font-size:34px;margin-top:10px;}
+.yearball-body h1,.yearball-body h2{color:var(--invert);font-size:34px;margin-top:10px;}
 .yearball-body .sub{color:var(--brass-light);font-size:14px;font-weight:600;margin-top:4px;}
 .yearball-body p{color:var(--invert-soft);font-size:14.5px;line-height:1.65;margin-top:14px;max-width:560px;}
 .yearball-reasons{display:flex;gap:22px;margin-top:22px;flex-wrap:wrap;}
@@ -644,7 +653,7 @@ button:active{transform:scale(.96);}
 .about-inner{
   background:var(--card);border-radius:28px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:44px;box-shadow:var(--shadow);
 }
-.about-inner h2{font-size:28px;}
+.about-inner h1,.about-inner h2{font-size:28px;}
 .about-inner p{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin-top:14px;}
 .about-values{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start;}
 .about-values div{border-left:2px solid var(--fairway);padding-left:14px;}
@@ -724,7 +733,7 @@ button:active{transform:scale(.96);}
 .toplists{padding:8px 32px 60px;}
 .toplists .wrap{max-width:1240px;margin:0 auto;padding:0;}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px;}
-.section-head h2{color:var(--invert);}
+.section-head h1,.section-head h2{color:var(--invert);}
 .section-head .section-sub{color:var(--invert-soft);font-size:13.5px;}
 .toplist-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;}
 .toplist-card{
@@ -1330,7 +1339,7 @@ input[type=range]::-webkit-slider-thumb{
 .quiz-glow{position:absolute;top:-140px;right:-140px;width:420px;height:420px;background:radial-gradient(circle,rgba(173,138,82,.35),transparent 70%);}
 .quiz-inner{max-width:640px;margin:0 auto;position:relative;}
 .quiz-inner .eyebrow{color:var(--brass-light);}
-.quiz-inner h2{color:#fff;font-size:32px;margin-top:10px;}
+.quiz-inner h1,.quiz-inner h2{color:#fff;font-size:32px;margin-top:10px;}
 .quiz-inner>p{color:#C8D6CE;margin-top:12px;font-size:14.5px;line-height:1.6;}
 .quiz-science-note{font-size:12.5px;color:var(--brass-light);margin-top:10px;line-height:1.55;}
 .quiz-science-note a{color:var(--brass-light);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(228,210,168,.4);cursor:pointer;}
@@ -1474,10 +1483,10 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
       <span class="logo-text">Golfbollsguiden<span class="logo-tld">.se</span></span>
     </div>
     <div class="nav-links">
-      <a  onclick="return goToPage('home')">Hem</a>
-      <a  onclick="return goToPage('ballar')">Alla bollar</a>
-      <a  onclick="return goToPage('vetenskap')">Vetenskap</a>
-      <a  onclick="return goToPage('quiz')">Hitta din boll</a>
+      <a href="#home"  onclick="return goToPage('home')">Hem</a>
+      <a href="#ballar"  onclick="return goToPage('ballar')">Alla bollar</a>
+      <a href="#vetenskap"  onclick="return goToPage('vetenskap')">Vetenskap</a>
+      <a href="#quiz"  onclick="return goToPage('quiz')">Hitta din boll</a>
 
       <div class="nav-dropdown" id="navDropdownHitta">
         <button class="nav-dd-trigger" onclick="toggleNavDropdown(event,'navDropdownHitta')">
@@ -1485,13 +1494,13 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="nav-dd-panel">
-          <a  onclick="return goToPage('toplistor')">Topplistor</a>
-          <a  onclick="return goToPage('kategorier')">Kategorier</a>
-          <a  onclick="return goToPage('skanna')">Skanna hyllan</a>
-          <a  onclick="return goToPage('profil')">Min profil</a>
-          <a  onclick="return goToPage('arets-golfboll')">Årets golfboll</a>
-          <a  onclick="return goToPage('recensioner')">Recensioner</a>
-          <a  onclick="return goToPage('roligt')">Lek & lär</a>
+          <a href="#toplistor"  onclick="return goToPage('toplistor')">Topplistor</a>
+          <a href="#kategorier"  onclick="return goToPage('kategorier')">Kategorier</a>
+          <a href="#skanna"  onclick="return goToPage('skanna')">Skanna hyllan</a>
+          <a href="#profil"  onclick="return goToPage('profil')">Min profil</a>
+          <a href="#arets-golfboll"  onclick="return goToPage('arets-golfboll')">Årets golfboll</a>
+          <a href="#recensioner"  onclick="return goToPage('recensioner')">Recensioner</a>
+          <a href="#roligt"  onclick="return goToPage('roligt')">Lek & lär</a>
         </div>
       </div>
 
@@ -1501,12 +1510,12 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="nav-dd-panel">
-          <a  onclick="return goToPage('fakta')">Fakta</a>
-          <a  onclick="return goToPage('testmetodik')">Testmetodik</a>
-          <a  onclick="return goToPage('testmetodik')">Vår modell</a>
-          <a  onclick="return goToPage('andringslogg')">Ändringslogg</a>
-          <a  onclick="return goToPage('guider')">Guider</a>
-          <a  onclick="return goToPage('begagnat')">Begagnat</a>
+          <a href="#fakta"  onclick="return goToPage('fakta')">Fakta</a>
+          <a href="#testmetodik"  onclick="return goToPage('testmetodik')">Testmetodik</a>
+          <a href="#testmetodik"  onclick="return goToPage('testmetodik')">Vår modell</a>
+          <a href="#andringslogg"  onclick="return goToPage('andringslogg')">Ändringslogg</a>
+          <a href="#guider"  onclick="return goToPage('guider')">Guider</a>
+          <a href="#begagnat"  onclick="return goToPage('begagnat')">Begagnat</a>
         </div>
       </div>
 
@@ -1516,9 +1525,9 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="nav-dd-panel">
-          <a  onclick="return goToPage('tillverkare')">Tillverkare</a>
-          <a  onclick="return goToPage('proffsen')">Proffsen</a>
-          <a  onclick="return goToPage('om-oss')">Om oss</a>
+          <a href="#tillverkare"  onclick="return goToPage('tillverkare')">Tillverkare</a>
+          <a href="#proffsen"  onclick="return goToPage('proffsen')">Proffsen</a>
+          <a href="#om-oss"  onclick="return goToPage('om-oss')">Om oss</a>
         </div>
       </div>
     </div>
@@ -1534,29 +1543,29 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
     </div>
   </div>
   <div class="mobile-nav" id="mobileNav">
-    <a  onclick="goToPage('home');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9"/></svg>Hem</a>
-    <a  onclick="goToPage('ballar');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Alla bollar</a>
-    <a  onclick="goToPage('vetenskap');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2v6L4 20a1.5 1.5 0 001.4 2h13.2a1.5 1.5 0 001.4-2L15 8V2"/><path d="M9 2h6M8 15h8"/></svg>Vetenskap</a>
-    <a  onclick="goToPage('quiz');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.9L21 11l-6.5 2.1L12 20l-2.5-6.9L3 11l6.5-2.1z"/></svg>Hitta din boll</a>
+    <a href="#home"  onclick="goToPage('home');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9"/></svg>Hem</a>
+    <a href="#ballar"  onclick="goToPage('ballar');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Alla bollar</a>
+    <a href="#vetenskap"  onclick="goToPage('vetenskap');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2v6L4 20a1.5 1.5 0 001.4 2h13.2a1.5 1.5 0 001.4-2L15 8V2"/><path d="M9 2h6M8 15h8"/></svg>Vetenskap</a>
+    <a href="#quiz"  onclick="goToPage('quiz');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.9L21 11l-6.5 2.1L12 20l-2.5-6.9L3 11l6.5-2.1z"/></svg>Hitta din boll</a>
     <span class="mobile-nav-group-label">Hitta boll</span>
-    <a  onclick="goToPage('toplistor');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V10M12 19V4M20 19v-6"/></svg>Topplistor</a>
-    <a  onclick="goToPage('kategorier');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg>Kategorier</a>
-    <a  onclick="goToPage('skanna');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8V6a2 2 0 012-2h2M4 16v2a2 2 0 002 2h2M20 8V6a2 2 0 00-2-2h-2M20 16v2a2 2 0 01-2 2h-2"/><circle cx="12" cy="12" r="3.5"/></svg>Skanna hyllan</a>
-    <a  onclick="goToPage('profil');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>Min profil</a>
-    <a  onclick="goToPage('arets-golfboll');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="5.5"/><path d="M9 14l-1.5 7L12 18l4.5 3L15 14"/></svg>Årets golfboll</a>
-    <a  onclick="goToPage('recensioner');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.9L21 11l-6.5 2.1L12 20l-2.5-6.9L3 11l6.5-2.1z"/></svg>Recensioner</a>
-    <a  onclick="goToPage('roligt');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="8" width="20" height="10" rx="5"/><path d="M7 12h2M8 11v2"/><circle cx="15" cy="11" r="1"/><circle cx="17.5" cy="13.5" r="1"/></svg>Lek & lär</a>
+    <a href="#toplistor"  onclick="goToPage('toplistor');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V10M12 19V4M20 19v-6"/></svg>Topplistor</a>
+    <a href="#kategorier"  onclick="goToPage('kategorier');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg>Kategorier</a>
+    <a href="#skanna"  onclick="goToPage('skanna');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8V6a2 2 0 012-2h2M4 16v2a2 2 0 002 2h2M20 8V6a2 2 0 00-2-2h-2M20 16v2a2 2 0 01-2 2h-2"/><circle cx="12" cy="12" r="3.5"/></svg>Skanna hyllan</a>
+    <a href="#profil"  onclick="goToPage('profil');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>Min profil</a>
+    <a href="#arets-golfboll"  onclick="goToPage('arets-golfboll');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="5.5"/><path d="M9 14l-1.5 7L12 18l4.5 3L15 14"/></svg>Årets golfboll</a>
+    <a href="#recensioner"  onclick="goToPage('recensioner');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.9L21 11l-6.5 2.1L12 20l-2.5-6.9L3 11l6.5-2.1z"/></svg>Recensioner</a>
+    <a href="#roligt"  onclick="goToPage('roligt');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="8" width="20" height="10" rx="5"/><path d="M7 12h2M8 11v2"/><circle cx="15" cy="11" r="1"/><circle cx="17.5" cy="13.5" r="1"/></svg>Lek & lär</a>
     <span class="mobile-nav-group-label">Lär dig</span>
-    <a  onclick="goToPage('fakta');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 11.5h1.5v5"/></svg>Fakta</a>
-    <a  onclick="goToPage('testmetodik');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3h6M10 3v5.5L5.5 17a2 2 0 001.8 3h9.4a2 2 0 001.8-3L14 8.5V3"/></svg>Testmetodik</a>
-    <a  onclick="goToPage('testmetodik');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h6"/><circle cx="19" cy="12" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>Vår modell</a>
-    <a  onclick="goToPage('andringslogg');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>Ändringslogg</a>
-    <a  onclick="goToPage('guider');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5v-15z"/><path d="M4 5.5v15A2.5 2.5 0 006.5 23"/></svg>Guider</a>
-    <a  onclick="goToPage('begagnat');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 7L4 4M4 4v4M4 4h4M17 17l3 3M20 20v-4M20 20h-4"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg>Begagnat</a>
+    <a href="#fakta"  onclick="goToPage('fakta');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 11.5h1.5v5"/></svg>Fakta</a>
+    <a href="#testmetodik"  onclick="goToPage('testmetodik');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3h6M10 3v5.5L5.5 17a2 2 0 001.8 3h9.4a2 2 0 001.8-3L14 8.5V3"/></svg>Testmetodik</a>
+    <a href="#testmetodik"  onclick="goToPage('testmetodik');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h6"/><circle cx="19" cy="12" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>Vår modell</a>
+    <a href="#andringslogg"  onclick="goToPage('andringslogg');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>Ändringslogg</a>
+    <a href="#guider"  onclick="goToPage('guider');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5v-15z"/><path d="M4 5.5v15A2.5 2.5 0 006.5 23"/></svg>Guider</a>
+    <a href="#begagnat"  onclick="goToPage('begagnat');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 7L4 4M4 4v4M4 4h4M17 17l3 3M20 20v-4M20 20h-4"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg>Begagnat</a>
     <span class="mobile-nav-group-label">Mer</span>
-    <a  onclick="goToPage('tillverkare');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V10l6 4V10l6 4V6l6 4v11H3z"/></svg>Tillverkare</a>
-    <a  onclick="goToPage('proffsen');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 5H4v2a3 3 0 003 3M17 5h3v2a3 3 0 01-3 3M12 14v4M9 21h6"/></svg>Proffsen</a>
-    <a  onclick="goToPage('om-oss');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8v.01"/></svg>Om oss</a>
+    <a href="#tillverkare"  onclick="goToPage('tillverkare');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V10l6 4V10l6 4V6l6 4v11H3z"/></svg>Tillverkare</a>
+    <a href="#proffsen"  onclick="goToPage('proffsen');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 5H4v2a3 3 0 003 3M17 5h3v2a3 3 0 01-3 3M12 14v4M9 21h6"/></svg>Proffsen</a>
+    <a href="#om-oss"  onclick="goToPage('om-oss');closeMobileNav();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8v.01"/></svg>Om oss</a>
     <button class="rate-btn" onclick="closeMobileNav();openRateModal()" style="justify-content:center;margin-top:8px;">Ge betyg</button>
     <button class="nav-cta" onclick="goToPage('quiz');closeMobileNav();">Ta quizet</button>
   </div>
@@ -1595,7 +1604,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
     </div>
 
     <div class="hero-mini-card" id="heroMiniCard" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"></div>
-    <div class="hero-mini-card" id="profileSpotlight" style="display:none;margin-top:10px;" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"></div>
+    <div class="hero-mini-card" id="profileSpotlight" style="display:none;margin-top:10px;" tabindex="0" role="button" aria-label="Rekommendation baserad på din profil" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"></div>
 
     <div class="hero-stats">
       <div class="hero-stat"><b id="statCount">20</b><span>Modeller jämförda</span></div>
@@ -1655,11 +1664,12 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 </div>
 
 <div class="page" id="page-ballar">
+<h1 class="sr-only">Alla golfbollar — jämför och filtrera</h1>
 <div class="filter-shell">
   <div class="filter-bar" id="filterBar">
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="text" id="searchInput" placeholder="Sök märke eller modell…">
+      <input type="text" id="searchInput" aria-label="Sök bland golfbollar på märke eller modell" placeholder="Sök märke eller modell…">
     </div>
     <button class="chip active" data-brand="all">Alla märken</button>
     <button class="chip fav" id="favChip" onclick="toggleFavFilter()">❤ Favoriter</button>
@@ -1667,7 +1677,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
       Fler filter
     </button>
-    <select class="sort-select" id="sortSelect">
+    <select class="sort-select" id="sortSelect" aria-label="Sortera bollistan">
       <option value="popular">Mest populär</option>
       <option value="rating">Högst betyg</option>
       <option value="price-asc">Pris: lägst först</option>
@@ -1688,7 +1698,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
       </div>
       <div class="filter-panel">
         <div class="filter-group">
-          <label>Handicap <span class="tag-hint">→ kopplat till rekommendation</span></label>
+          <label for="handicapFilter">Handicap <span class="tag-hint">→ kopplat till rekommendation</span></label>
           <select class="fselect" id="handicapFilter" onchange="applyFilterMatch()">
             <option value="all">Alla handicap</option>
             <option value="low">Under 9 (låg handicap)</option>
@@ -1698,7 +1708,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
           </select>
         </div>
         <div class="filter-group">
-          <label>Svinghastighet</label>
+          <label for="swingFilter">Svinghastighet</label>
           <select class="fselect" id="swingFilter" onchange="applyFilterMatch()">
             <option value="all">Alla svinghastigheter</option>
             <option value="fast">Snabb (över 165 km/h)</option>
@@ -1707,21 +1717,21 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
           </select>
         </div>
         <div class="filter-group">
-          <label>Prisintervall (kr / dussin)</label>
+          <label for="priceRange">Prisintervall (kr / dussin)</label>
           <div class="range-row"><span class="mono" id="priceMinLbl">200</span><input type="range" id="priceRange" min="200" max="650" value="650"><span class="mono" id="priceMaxLbl">650</span></div>
         </div>
         <div class="filter-group">
-          <label>Känsla (mjuk → hård)</label>
+          <label for="compRange">Känsla (mjuk → hård)</label>
           <p class="filter-hint">Kompressionsvärde. Lägre tal = mjukare boll som passar långsammare svingar. Högre tal = hårdare boll som kräver mer svinghastighet för att komprimeras fullt ut.</p>
           <div class="range-row"><span class="mono">30</span><input type="range" id="compRange" min="30" max="105" value="105"><span class="mono" id="compMaxLbl">105</span></div>
         </div>
         <div class="filter-group">
-          <label>Minsta distans <span class="mono" id="distMinLbl">1</span>/9</label>
+          <label for="distRange">Minsta distans <span class="mono" id="distMinLbl">1</span>/9</label>
           <p class="filter-hint">Hur långtgående bollen är, betygsatt av redaktionen. Dra reglaget åt höger för att bara visa bollar med hög distans.</p>
           <div class="range-row"><input type="range" id="distRange" min="1" max="9" value="1"></div>
         </div>
         <div class="filter-group">
-          <label>Minsta spinnkontroll <span class="mono" id="spinMinLbl">1</span>/9</label>
+          <label for="spinRange">Minsta spinnkontroll <span class="mono" id="spinMinLbl">1</span>/9</label>
           <p class="filter-hint">Hur väl bollen kan stoppas och kontrolleras runt green, framför allt med wedge. Högt värde = bollen "griper" snabbt på green.</p>
           <div class="range-row"><input type="range" id="spinRange" min="1" max="9" value="1"></div>
         </div>
@@ -1751,7 +1761,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <section class="science-hero">
   <div class="science-hero-inner wrap">
     <span class="eyebrow" style="color:var(--brass-light);">Vetenskapen bakom bollen</span>
-    <h2 class="science-hero-h1">Byggd på riktig forskning, <em>inte tumregler.</em></h2>
+    <h1 class="science-hero-h1">Byggd på riktig forskning, <em>inte tumregler.</em></h1>
     <p>Det mesta som skrivs om golfbollar online är marknadsföring eller tumregler. Här samlar vi det som faktiskt går att belägga: peer-reviewade studier, officiella testprotokoll från USGA och R&A, oberoende robottester, patentlitteratur och etablerad sportfysik. Ingen artikel här är påhittad — hittar vi motsägande forskning visar vi det öppet istället för att gömma det.</p>
     <div class="science-hero-stats" id="scienceHeroStats"></div>
   </div>
@@ -1764,7 +1774,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-andringslogg">
 <section class="wrap changelog-page">
   <div class="section-head">
-    <h2 style="font-size:24px;">Ändringslogg</h2>
+    <h1 style="font-size:24px;">Ändringslogg</h1>
     <span class="section-sub">Varje gång vi hittar och rättar fel i vår egen data — offentligt, med datum och källa</span>
   </div>
   <p class="changelog-intro">De flesta jämförelsesajter visar aldrig när de själva haft fel. Vi gör motsatsen: när vår research avslöjar att en siffra, ett produktnamn eller ett antagande i katalogen är fel eller föråldrat, loggar vi det här — inte bara rättar det tyst. Om du undrar varför en boll ser annorlunda ut mot förra gången du kollade, är svaret troligen här.</p>
@@ -1775,7 +1785,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-testmetodik">
 <section class="wrap testmethod">
   <div class="section-head">
-    <h2 style="font-size:24px;">Så testar vi våra golfbollar</h2>
+    <h1 style="font-size:24px;">Så testar vi våra golfbollar</h1>
     <span class="section-sub">Full transparens kring vad vi mäter och hur totalbetyget räknas fram</span>
   </div>
 
@@ -1866,7 +1876,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-recensioner">
 <section class="wrap reviews-hub">
   <div class="section-head">
-    <h2 style="font-size:24px;">Recensioner</h2>
+    <h1 style="font-size:24px;">Recensioner</h1>
     <span class="section-sub">Alla omdömen från alla 44 bollar, samlade på ett ställe</span>
   </div>
   <div class="rating-methodology" style="margin-bottom:22px;max-width:640px;">
@@ -1876,12 +1886,12 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
   <div class="rev-filter-row">
     <div class="search-box" style="width:100%;max-width:320px;height:42px;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="text" id="reviewsSearch" placeholder="Sök märke eller modell…" style="width:100%;" oninput="renderReviewsHub()">
+      <input type="text" id="reviewsSearch" aria-label="Sök recensioner på märke eller modell" placeholder="Sök märke eller modell…" style="width:100%;" oninput="renderReviewsHub()">
     </div>
-    <select class="fselect" id="reviewsBrandFilter" style="max-width:220px;" onchange="renderReviewsHub()">
+    <select class="fselect" id="reviewsBrandFilter" aria-label="Filtrera recensioner på märke" style="max-width:220px;" onchange="renderReviewsHub()">
       <option value="all">Alla märken</option>
     </select>
-    <select class="fselect" id="reviewsSortSelect" style="max-width:220px;" onchange="renderReviewsHub()">
+    <select class="fselect" id="reviewsSortSelect" aria-label="Sortera recensioner" style="max-width:220px;" onchange="renderReviewsHub()">
       <option value="reviews">Flest recensioner</option>
       <option value="rating">Högst betyg</option>
       <option value="az">A–Ö</option>
@@ -1895,7 +1905,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <section class="toplists" id="toplists">
   <div class="wrap">
     <div class="section-head">
-      <h2 style="font-size:24px;">Topplistor just nu</h2>
+      <h1 style="font-size:24px;">Topplistor just nu</h1>
     </div>
     <div class="toplist-row" id="toplistRow"></div>
   </div>
@@ -1909,7 +1919,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-fakta">
 <section class="facts wrap" id="facts">
   <div class="section-head">
-    <h2 style="font-size:24px;">Fakta om golfbollar</h2>
+    <h1 style="font-size:24px;">Fakta om golfbollar</h1>
     <span class="section-sub">Det som faktiskt avgör hur en boll flyger, spinner och känns</span>
   </div>
   <div class="facts-grid" id="factsGrid"></div>
@@ -1919,7 +1929,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-begagnat">
 <section class="used wrap" id="used">
   <div class="section-head">
-    <h2 style="font-size:24px;">Nya vs. begagnade golfbollar</h2>
+    <h1 style="font-size:24px;">Nya vs. begagnade golfbollar</h1>
     <span class="section-sub">Spara upp till 70% — om du vet vad du ska leta efter</span>
   </div>
   <p class="used-intro">Begagnade golfbollar är sorterade och kvalitetskontrollerade tour-bollar som spelats en eller ett fåtal gånger. Cover och kärna är i praktiken opåverkade i de högre skickgraderna — det som skiljer är kosmetiskt slitage och en marginell spinnförlust efter mycket användning. För träningsrundor, dåligt väder eller golfare som tappar många bollar är det ofta det klart smartaste köpet.</p>
@@ -1931,12 +1941,12 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-proffsen">
 <section class="pros wrap" id="pros">
   <div class="section-head">
-    <h2 style="font-size:24px;">Vilken boll spelar proffsen?</h2>
+    <h1 style="font-size:24px;">Vilken boll spelar proffsen?</h1>
     <span class="section-sub">Offentligt kända utrustningsval — sponsringsavtal kan ändras mellan säsonger</span>
   </div>
   <div class="pros-search-box">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    <input type="text" id="prosSearchInput" placeholder="Sök på spelarnamn…" oninput="renderPros()">
+    <input type="text" id="prosSearchInput" aria-label="Sök proffs på spelarnamn" placeholder="Sök på spelarnamn…" oninput="renderPros()">
   </div>
   <p class="pros-scope-note">Vi listar spelare vars aktuella bollsponsring vi kunnat verifiera mot officiella källor — inte hela världsrankingen. Hittar du inte din spelare betyder det att vi inte hittat en tillförlitlig, aktuell källa, inte att uppgiften saknas av misstag.</p>
   <div class="pros-grid" id="prosGrid"></div>
@@ -1954,9 +1964,9 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
   <div class="quiz-glow"></div>
   <div class="quiz-inner">
     <span class="eyebrow">Personlig rekommendation</span>
-    <h2>Hitta din boll på 30 sekunder</h2>
+    <h1>Hitta din boll på 30 sekunder</h1>
     <p>Svara på fem korta frågor så räknar vi ut en matchningsprocent för varje boll utifrån din spelstil.</p>
-    <p class="quiz-science-note">Matchningen bygger på samma forskning som resten av sajten — kompressionens koppling till coefficient of restitution, Magnuseffektens roll i spinn, och lanseringsmonitor-data om optimal launch/spin-kombination. <a  onclick="goToPage('vetenskap');return false;">Se forskningen →</a></p>
+    <p class="quiz-science-note">Matchningen bygger på samma forskning som resten av sajten — kompressionens koppling till coefficient of restitution, Magnuseffektens roll i spinn, och lanseringsmonitor-data om optimal launch/spin-kombination. <a href="#vetenskap"  onclick="goToPage('vetenskap');return false;">Se forskningen →</a></p>
     <div class="quiz-progress" id="quizProgress"></div>
 
     <div id="quizSteps"></div>
@@ -1976,16 +1986,16 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 
 <div class="page" id="page-kategori">
 <section class="wrap category-page">
-  <a  onclick="goToPage('kategorier');return false;" class="cat-back">← Alla kategorier</a>
+  <a href="#kategorier"  onclick="goToPage('kategorier');return false;" class="cat-back">← Alla kategorier</a>
   <div class="cat-header">
     <span class="eyebrow" id="catEyebrow"></span>
-    <h2 class="cat-h1"><span class="cat-hash">#</span> <span id="catTitle"></span></h2>
+    <h1 class="cat-h1"><span class="cat-hash">#</span> <span id="catTitle"></span></h1>
     <p class="cat-desc" id="catDesc"></p>
   </div>
   <div class="cat-stats" id="catStats"></div>
   <div class="cat-cta-row">
     <button class="cat-cta" id="catCompareBtn">Jämför topp 3 →</button>
-    <a  onclick="goToPage('ballar');return false;" class="cat-cta ghost">Filtrera hela katalogen →</a>
+    <a href="#ballar"  onclick="goToPage('ballar');return false;" class="cat-cta ghost">Filtrera hela katalogen →</a>
   </div>
 
   <div class="cat-section-head">
@@ -2003,7 +2013,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 
   <div class="cat-transparency">
     <b>Transparensgaranti</b>
-    <p>Den här sidan säljer ingen plats. Rankingen ovan bygger uteslutande på bollarnas uppmätta specifikationer och vår publicerade <a  onclick="goToPage('testmetodik');return false;">testmetodik</a> — ingen tillverkare kan betala för en högre placering, och det finns ingen sponsrad yta någonstans på den här sidan.</p>
+    <p>Den här sidan säljer ingen plats. Rankingen ovan bygger uteslutande på bollarnas uppmätta specifikationer och vår publicerade <a href="#testmetodik"  onclick="goToPage('testmetodik');return false;">testmetodik</a> — ingen tillverkare kan betala för en högre placering, och det finns ingen sponsrad yta någonstans på den här sidan.</p>
   </div>
 </section>
 </div>
@@ -2012,7 +2022,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <section class="wrap categories-index">
   <div class="cat-header">
     <span class="eyebrow">Bläddra</span>
-    <h2 class="cat-h1">Alla kategorier</h2>
+    <h1 class="cat-h1">Alla kategorier</h1>
     <p class="cat-desc">Golfbollar grupperade efter prisklass och prestandaprofil. Samma numeriska ranking inom varje kategori som resten av sajten.</p>
   </div>
   <div class="categories-grid" id="categoriesGrid"></div>
@@ -2022,7 +2032,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-tillverkare">
 <section class="brands wrap" id="brands">
   <div class="section-head">
-    <h2 style="font-size:24px;">Tillverkare</h2>
+    <h1 style="font-size:24px;">Tillverkare</h1>
     <span class="section-sub">Historia, modeller och styrkor för varje märke — samma djup oavsett storlek</span>
   </div>
   <div class="brands-grid" id="brandsGrid"></div>
@@ -2032,7 +2042,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-guider">
 <section class="guides-kb wrap" id="guideskb">
   <div class="section-head">
-    <h2 style="font-size:24px;">Artiklar & kunskapsbank</h2>
+    <h1 style="font-size:24px;">Artiklar & kunskapsbank</h1>
     <span class="section-sub">Vetenskaplig forskning, teknik, historia, tourspel, marknad och köpguider — allt om golfbollar på ett ställe, med källor till varje forskningsartikel</span>
   </div>
   <div class="kb-cat-row" id="kbCategoryRow"></div>
@@ -2043,29 +2053,29 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-profil">
 <section class="wrap profile-page">
   <div class="section-head">
-    <h2 style="font-size:24px;">Min profil</h2>
+    <h1 style="font-size:24px;">Min profil</h1>
     <span class="section-sub">Sparas lokalt i din webbläsare — inte ett riktigt konto som följer med mellan enheter, se förklaring nedan.</span>
   </div>
   <div id="profileNotice" class="profile-notice"></div>
   <form id="profileForm" class="profile-form" onsubmit="return saveProfile(event)">
     <div class="filter-group">
-      <label>Svinghastighet med driver (mph)</label>
+      <label for="pfSwing">Svinghastighet med driver (mph)</label>
       <div class="range-row"><span class="mono">70</span><input type="range" id="pfSwing" min="70" max="120" value="90"><span class="mono" id="pfSwingLbl">90</span></div>
     </div>
     <div class="filter-group">
-      <label>Hur långt slår du med driver? (meter, carry)</label>
+      <label for="pfDriverDist">Hur långt slår du med driver? (meter, carry)</label>
       <input type="number" id="pfDriverDist" min="100" max="320" value="200" class="profile-input">
     </div>
     <div class="filter-group">
-      <label>Hur långt slår du med 7-järn? (meter, carry)</label>
+      <label for="pfIronDist">Hur långt slår du med 7-järn? (meter, carry)</label>
       <input type="number" id="pfIronDist" min="60" max="180" value="120" class="profile-input">
     </div>
     <div class="filter-group">
-      <label>Vilken boll spelar du oftast idag?</label>
+      <label for="pfCurrentBall">Vilken boll spelar du oftast idag?</label>
       <input type="text" id="pfCurrentBall" placeholder="T.ex. Titleist Pro V1" class="profile-input">
     </div>
     <div class="filter-group">
-      <label>Ungefärlig handicap</label>
+      <label for="pfHandicap">Ungefärlig handicap</label>
       <select id="pfHandicap" class="fselect">
         <option value="beg">Nybörjare / spelar inte med handicap än</option>
         <option value="high">20+</option>
@@ -2074,7 +2084,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
       </select>
     </div>
     <div class="filter-group">
-      <label>Vad vill du förbättra mest?</label>
+      <label for="pfImprove">Vad vill du förbättra mest?</label>
       <select id="pfImprove" class="fselect">
         <option value="distance">Distans</option>
         <option value="control">Kontroll & spinn</option>
@@ -2094,14 +2104,14 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-skanna">
 <section class="wrap scan-page">
   <div class="section-head">
-    <h2 style="font-size:24px;">Skanna hyllan</h2>
+    <h1 style="font-size:24px;">Skanna hyllan</h1>
     <span class="section-sub">Ta en bild på golfbollarna i butiken — vi läser av synlig text/logotyper och jämför mot katalogen</span>
   </div>
   <div class="scan-caveat">
     <b>Viktigt att veta innan du testar:</b> golfbollar ser nästan identiska ut rent visuellt — det enda som faktiskt går att identifiera är text och logotyper som syns tydligt i bilden, oftast på förpackningen snarare än på själva bollen. Ju skarpare och rakare bild, desto bättre resultat. Vi kan inte garantera en korrekt identifiering — se alltid resultatet som ett förslag att verifiera själv, inte en absolut sanning. Avläsningen sker i din egen webbläsare; bilden laddas aldrig upp någonstans.
   </div>
   <div class="scan-upload-box" id="scanUploadBox">
-    <input type="file" id="scanFileInput" accept="image/*" capture="environment" onchange="handleScanUpload(event)" style="display:none;">
+    <input type="file" id="scanFileInput" aria-label="Välj eller fotografera en bild på golfbollar" accept="image/*" capture="environment" onchange="handleScanUpload(event)" style="display:none;">
     <div id="scanUploadPrompt" onclick="document.getElementById('scanFileInput').click()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8V6a2 2 0 012-2h2M4 16v2a2 2 0 002 2h2M20 8V6a2 2 0 00-2-2h-2M20 16v2a2 2 0 01-2 2h-2"/><circle cx="12" cy="12" r="3.5"/></svg>
       <span>Tryck för att ta en bild eller ladda upp en</span>
@@ -2119,7 +2129,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
     <p>Textavläsningen har svårt för sneda vinklar, reflexer i plasten och liten text. Sök här så fungerar det oavsett.</p>
     <div class="scan-manual-search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="text" id="scanManualInput" placeholder="Sök t.ex. Titleist Pro V1x…" oninput="scanManualSearch()">
+      <input type="text" id="scanManualInput" aria-label="Sök golfboll manuellt på märke eller modell" placeholder="Sök t.ex. Titleist Pro V1x…" oninput="scanManualSearch()">
     </div>
     <div id="scanManualResults" class="scan-manual-results"></div>
   </div>
@@ -2129,7 +2139,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-roligt">
 <section class="wrap fun-page">
   <div class="section-head">
-    <h2 style="font-size:24px;">Lek & lär</h2>
+    <h1 style="font-size:24px;">Lek & lär</h1>
     <span class="section-sub">Golfbollsfysik behöver inte vara tråkigt — tre sätt att leka med det vi faktiskt vet</span>
   </div>
 
@@ -2150,7 +2160,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
   <div class="fun-panel" id="funPanel-era">
     <p class="fun-intro">Välj en boll ur katalogen så visar vi var i golfbollens historia dess konstruktion och kompression skulle placerat sig.</p>
     <div class="era-picker">
-      <input type="text" id="eraSearchInput" placeholder="Sök en boll, t.ex. Pro V1…" oninput="eraSearch()">
+      <input type="text" id="eraSearchInput" aria-label="Sök en golfboll för era-testet" placeholder="Sök en boll, t.ex. Pro V1…" oninput="eraSearch()">
       <div id="eraSearchResults" class="era-search-results"></div>
     </div>
     <div id="eraResult"></div>
@@ -2160,15 +2170,15 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
     <p class="fun-intro">Dra i reglagen och se hur lanseringsvinkel, spinn och kompression påverkar bollbanan — baserat på Magnuseffekten och spinnedbrytningen vi skrivit om i forskningsdelen. Illustrativt, inte en exakt fysiksimulering.</p>
     <div class="trajectory-controls">
       <div class="traj-slider">
-        <label>Lanseringsvinkel <span id="trajLaunchVal">14°</span></label>
+        <label for="trajLaunch">Lanseringsvinkel <span id="trajLaunchVal">14°</span></label>
         <input type="range" id="trajLaunch" min="6" max="35" value="14" oninput="updateTrajectory()">
       </div>
       <div class="traj-slider">
-        <label>Spinn (varv/min) <span id="trajSpinVal">2600</span></label>
+        <label for="trajSpin">Spinn (varv/min) <span id="trajSpinVal">2600</span></label>
         <input type="range" id="trajSpin" min="1500" max="7000" value="2600" step="100" oninput="updateTrajectory()">
       </div>
       <div class="traj-slider">
-        <label>Bollhastighet (km/h) <span id="trajSpeed">245</span></label>
+        <label for="trajSpeedInput">Bollhastighet (km/h) <span id="trajSpeed">245</span></label>
         <input type="range" id="trajSpeedInput" min="180" max="280" value="245" oninput="updateTrajectory()">
       </div>
     </div>
@@ -2184,7 +2194,7 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-integritet">
 <section class="wrap legal-page">
   <div class="section-head">
-    <h2 style="font-size:24px;">Integritetspolicy</h2>
+    <h1 style="font-size:24px;">Integritetspolicy</h1>
     <span class="section-sub">Vad vi samlar in, varför, och vad du kan göra åt det</span>
   </div>
   <div class="legal-body">
@@ -2195,9 +2205,9 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
     <h4>Cookies</h4>
     <p>Den här sidan sparar teknisk data lokalt i din webbläsare (localStorage) för att komma ihåg dina favoriter och din profil mellan besök. Det är inte spårningscookies för reklam. Om vi i framtiden lägger till analysverktyg (t.ex. besöksstatistik) uppdaterar vi den här sidan och ber om ditt samtycke enligt gällande lag innan det aktiveras.</p>
     <h4>Affiliate-länkar</h4>
-    <p>Vissa länkar till återförsäljare (t.ex. Amazon.se, Dormy, Stadium) kan vara affiliate-länkar — vi kan få en liten ersättning om du gör ett köp via dem, utan extra kostnad för dig. Det påverkar aldrig vår ranking eller våra betyg; se <a onclick="goToPage('testmetodik');return false;">Vår modell</a> för hur betygen faktiskt räknas fram.</p>
+    <p>Vissa länkar till återförsäljare (t.ex. Amazon.se, Dormy, Stadium) kan vara affiliate-länkar — vi kan få en liten ersättning om du gör ett köp via dem, utan extra kostnad för dig. Det påverkar aldrig vår ranking eller våra betyg; se <a href="#testmetodik" onclick="goToPage('testmetodik');return false;">Vår modell</a> för hur betygen faktiskt räknas fram.</p>
     <h4>Dina rättigheter</h4>
-    <p>Du kan när som helst avsluta nyhetsbrevsprenumerationen via länken i varje utskick, och du kan rensa all lokalt sparad data genom att rensa din webbläsares data för den här sidan. Frågor om dina uppgifter? Kontakta oss via <a onclick="goToPage('om-oss');return false;">Om oss</a>.</p>
+    <p>Du kan när som helst avsluta nyhetsbrevsprenumerationen via länken i varje utskick, och du kan rensa all lokalt sparad data genom att rensa din webbläsares data för den här sidan. Frågor om dina uppgifter? Kontakta oss via <a href="#om-oss" onclick="goToPage('om-oss');return false;">Om oss</a>.</p>
     <p class="legal-updated">Senast uppdaterad: augusti 2026.</p>
   </div>
 </section>
@@ -2206,12 +2216,12 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
 <div class="page" id="page-villkor">
 <section class="wrap legal-page">
   <div class="section-head">
-    <h2 style="font-size:24px;">Användarvillkor & ansvarsfriskrivning</h2>
+    <h1 style="font-size:24px;">Användarvillkor & ansvarsfriskrivning</h1>
     <span class="section-sub">Rakt på sak om vad den här sajten är, och inte är</span>
   </div>
   <div class="legal-body">
     <h4>Vad sajten är</h4>
-    <p>En oberoende jämförelsesajt för golfbollar. Betyg, rekommendationer och jämförelser är vår egen redaktionella bedömning kombinerat med, där det anges, verifierad extern testdata. Se <a onclick="goToPage('testmetodik');return false;">Vår modell</a> för exakt vad som är vad.</p>
+    <p>En oberoende jämförelsesajt för golfbollar. Betyg, rekommendationer och jämförelser är vår egen redaktionella bedömning kombinerat med, där det anges, verifierad extern testdata. Se <a href="#testmetodik" onclick="goToPage('testmetodik');return false;">Vår modell</a> för exakt vad som är vad.</p>
     <h4>Vad sajten inte är</h4>
     <p>Inte en officiell testinstitution, inte kopplad till USGA, R&A eller någon golfbollstillverkare. Innehållet är vägledande, inte en garanti för hur en specifik boll kommer att prestera för dig — golfutrustning är individuellt.</p>
     <h4>Ansvarsfriskrivning</h4>
@@ -2250,8 +2260,8 @@ footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:var
   <div class="wrap">
     <span>© 2026 Golfbollsguiden — oberoende jämförelser av golfbollar. <span class="footer-updated" id="footerUpdated"></span></span>
     <span class="footer-legal-links">
-      <a onclick="goToPage('integritet');return false;">Integritetspolicy</a>
-      <a onclick="goToPage('villkor');return false;">Användarvillkor</a>
+      <a href="#integritet" onclick="goToPage('integritet');return false;">Integritetspolicy</a>
+      <a href="#villkor" onclick="goToPage('villkor');return false;">Användarvillkor</a>
     </span>
     <span>Specifikationer och distansuppskattningar är riktvärden baserade på tillverkarnas publicerade data och bör verifieras löpande.</span>
   </div>
@@ -3254,7 +3264,7 @@ async function openDetail(id, focusReviews){
         `}
       </div>
       <div class="rating-breakdown-box">
-        <div class="rbb-head"><h4>Så räknades ${b.rating.toFixed(1)} ★ fram</h4><a onclick="closeModal('detailModalBg');return goToPage('testmetodik')">Se vår metodik →</a></div>
+        <div class="rbb-head"><h4>Så räknades ${b.rating.toFixed(1)} ★ fram</h4><a href="#testmetodik" onclick="closeModal('detailModalBg');return goToPage('testmetodik')">Se vår metodik →</a></div>
         <div class="rbb-rows">
           ${(()=>{ const rb = ratingBreakdown(b); return `
             <div class="rbb-row"><span>Prestanda</span><div class="rbb-bar"><i style="width:${rb.prestanda}%"></i></div><b>${rb.prestanda}/100 · 45%</b></div>
@@ -3280,7 +3290,7 @@ async function openDetail(id, focusReviews){
             ${relatedResearch(b).map(g=>`<button class="rr-link" onclick="closeModal('detailModalBg');openGuide('${g.id}')">${g.title} →</button>`).join('')}
           </div>
         </div>
-        <p class="science-block-note">Detta är rimliga slutsatser baserade på bollens uppmätta egenskaper och etablerad sportfysik — inte tillverkarens egna, opublicerade interna mätvärden. <a onclick="closeModal('detailModalBg');return goToPage('vetenskap')">Läs mer forskning →</a></p>
+        <p class="science-block-note">Detta är rimliga slutsatser baserade på bollens uppmätta egenskaper och etablerad sportfysik — inte tillverkarens egna, opublicerade interna mätvärden. <a href="#vetenskap" onclick="closeModal('detailModalBg');return goToPage('vetenskap')">Läs mer forskning →</a></p>
       </div>
       <div class="player-fit"><b>Rekommenderat handicap</b>${handicapRange(b).range} (${handicapRange(b).label}) — baserat på bollens kompression, kontroll och hållbarhet.</div>
       <div class="player-fit" style="margin-top:12px;"><b>Passar bäst för</b>${annotateGlossary(b.player)}</div>
@@ -3350,7 +3360,7 @@ async function openDetail(id, focusReviews){
           return Object.keys(labels).map(k=>`<div class="perf-item"><span class="lbl">${labels[k]} <b>${s[k]}/10</b></span><div class="perf-bar"><i style="width:${s[k]*10}%"></i></div></div>`).join('');
         })()}
       </div>
-      <p class="perf-methodology-note">Delpoängen bygger på vår <a  onclick="goToPage('testmetodik');return false;">testmetodik</a> — vindprestanda och närspel totalt är modellerade utifrån kompression, spinn och kontroll snarare än separata laboratorietester.</p>
+      <p class="perf-methodology-note">Delpoängen bygger på vår <a href="#testmetodik"  onclick="goToPage('testmetodik');return false;">testmetodik</a> — vindprestanda och närspel totalt är modellerade utifrån kompression, spinn och kontroll snarare än separata laboratorietester.</p>
       <div class="club-perf">
         <div class="cp"><b>Driver</b><p>${annotateGlossary(b.driver)}</p></div>
         <div class="cp"><b>Järn</b><p>${annotateGlossary(b.irons)}</p></div>
@@ -3627,6 +3637,52 @@ function closeMobileNav(){
 
 /* ============ PAGE ROUTER ============ */
 const PAGES = ['home','ballar','recensioner','testmetodik','toplistor','arets-golfboll','fakta','begagnat','tillverkare','guider','proffsen','quiz','om-oss','vetenskap','kategorier','kategori','profil','skanna','integritet','villkor','andringslogg','roligt'];
+
+// Sajten är en enda sida som byter vy, så <title>, beskrivningen och canonical
+// stod kvar på startsidans värden hur användaren än navigerade. Det syns i
+// webbläsarfliken, i bokmärken, i historiken och i det som klistras in när
+// någon delar en länk. Här hör varje vy ihop med sin egen text.
+//
+// Fotnot om SEO: hash-adresser indexeras inte som separata sidor, så det här
+// gör inte 21 sidor av en. Vinsten är att flik, bokmärke och delad länk säger
+// vad man faktiskt tittar på.
+const PAGE_META = {
+  'home':           ['Golfbollsguiden \u2014 Hitta din perfekta boll | J\u00e4mf\u00f6r 52 golfbollar', 'J\u00e4mf\u00f6r 52 golfbollar fr\u00e5n 20 tillverkare \u2014 distans, spinn, k\u00e4nsla och h\u00e5llbarhet. Personlig rekommendation, \u00e4kta recensioner, forskningsbaserad testmetodik.'],
+  'ballar':         ['Alla golfbollar \u2014 j\u00e4mf\u00f6r och filtrera | Golfbollsguiden', 'Filtrera 52 golfbollar p\u00e5 handicap, svinghastighet, pris, kompression och spinn \u2014 och j\u00e4mf\u00f6r upp till tre sida vid sida.'],
+  'recensioner':    ['Recensioner av golfbollar | Golfbollsguiden', '\u00c4kta omd\u00f6men fr\u00e5n golfare som spelat bollen. Inga borttagna recensioner, inga k\u00f6pta betyg.'],
+  'testmetodik':    ['S\u00e5 testar vi golfbollar \u2014 v\u00e5r modell | Golfbollsguiden', 'Hela r\u00e4knemodellen \u00f6ppet redovisad: vilka data vi anv\u00e4nder, hur delbetygen v\u00e4gs och var os\u00e4kerheten sitter.'],
+  'toplistor':      ['Topplistor \u2014 b\u00e4sta golfbollarna just nu | Golfbollsguiden', 'Rankade listor per kategori: b\u00e4st totalt, b\u00e4st v\u00e4rde f\u00f6r pengarna, b\u00e4st f\u00f6r h\u00f6g respektive l\u00e5g svinghastighet.'],
+  'arets-golfboll': ['\u00c5rets golfboll | Golfbollsguiden', 'Bollen som tar helheten i \u00e5r \u2014 och de exakta sk\u00e4len till att den g\u00f6r det.'],
+  'fakta':          ['Fakta om golfbollar \u2014 kompression, lager, cover | Golfbollsguiden', 'Vad kompression, antal lager och covermaterial faktiskt betyder f\u00f6r ditt spel, f\u00f6rklarat utan s\u00e4ljprat.'],
+  'begagnat':       ['Nya vs. begagnade golfbollar | Golfbollsguiden', 'Vad du sparar och vad du f\u00f6rlorar p\u00e5 begagnade bollar \u2014 lake balls, refinished och vad graderingarna betyder.'],
+  'tillverkare':    ['Golfbollstillverkare \u2014 historia per m\u00e4rke | Golfbollsguiden', '20 tillverkare, deras sortiment och vad som skiljer dem \u00e5t i konstruktion och prisl\u00e4ge.'],
+  'guider':         ['Guider & kunskapsbank om golfbollar | Golfbollsguiden', 'K\u00f6pguider och teknikartiklar \u2014 v\u00e4lj r\u00e4tt boll f\u00f6r din sving, ditt spel och din pl\u00e5nbok.'],
+  'proffsen':       ['Vilken golfboll spelar proffsen? | Golfbollsguiden', 'Vad tourspelarna faktiskt spelar, och vad det betyder \u2014 och inte betyder \u2014 f\u00f6r ditt eget bollval.'],
+  'quiz':           ['Hitta din golfboll p\u00e5 30 sekunder \u2014 quiz | Golfbollsguiden', 'Fem fr\u00e5gor om handicap, svinghastighet, spelstil, prioritet och budget ger dig en rekommendation ur hela katalogen.'],
+  'om-oss':         ['Om Golfbollsguiden', 'Oberoende j\u00e4mf\u00f6relsesajt f\u00f6r golfbollar \u2014 vilka vi \u00e4r, hur vi finansieras och varf\u00f6r ranking aldrig g\u00e5r att k\u00f6pa.'],
+  'vetenskap':      ['Forskningen bakom golfbollen | Golfbollsguiden', '31 peer-reviewade studier, patent och officiella testprotokoll \u2014 med fullst\u00e4ndig k\u00e4llista du kan kontrollera sj\u00e4lv.'],
+  'kategorier':     ['Alla kategorier av golfbollar | Golfbollsguiden', 'Bl\u00e4ddra bollarna efter prisklass, konstruktion, k\u00e4nsla och anv\u00e4ndningsomr\u00e5de.'],
+  'kategori':       ['Kategori | Golfbollsguiden', 'Rankade golfbollar inom vald kategori, med samma \u00f6ppna betygsmodell som resten av sajten.'],
+  'profil':         ['Min profil \u2014 personlig rekommendation | Golfbollsguiden', 'Spara ditt spel en g\u00e5ng och f\u00e5 rekommendationer anpassade efter det. Allt sparas bara i din egen webbl\u00e4sare.'],
+  'skanna':         ['Skanna hyllan \u2014 identifiera bollar i butik | Golfbollsguiden', 'Fotografera golfbollarna i butiken och f\u00e5 dem uppslagna mot katalogen. Bilden l\u00e4ses av i din egen webbl\u00e4sare och skickas aldrig n\u00e5gonstans.'],
+  'integritet':     ['Integritetspolicy | Golfbollsguiden', 'Vad vi samlar in, varf\u00f6r, och vad du kan g\u00f6ra \u00e5t det.'],
+  'villkor':        ['Anv\u00e4ndarvillkor & ansvarsfriskrivning | Golfbollsguiden', 'Villkoren f\u00f6r att anv\u00e4nda sajten, och vad v\u00e5ra siffror \u00e4r respektive inte \u00e4r.'],
+  'andringslogg':   ['\u00c4ndringslogg | Golfbollsguiden', 'Allt som \u00e4ndrats p\u00e5 sajten, l\u00f6pande dokumenterat.'],
+  'roligt':         ['Lek & l\u00e4r \u2014 golftrivia och bollbanesimulator | Golfbollsguiden', 'Trivia ur v\u00e5ra forskningsartiklar, era-testet och en bollbanesimulator du kan dra i reglagen p\u00e5.']
+};
+const SITE_ORIGIN = 'https://golfbollsguiden.se/';
+function applyPageMeta(id){
+  const [title, desc] = PAGE_META[id] || PAGE_META.home;
+  document.title = title;
+  const set = (sel, attr, val)=>{ const el = document.querySelector(sel); if(el) el.setAttribute(attr, val); };
+  set('meta[name="description"]', 'content', desc);
+  set('meta[property="og:title"]', 'content', title);
+  set('meta[property="og:description"]', 'content', desc);
+  set('meta[name="twitter:title"]', 'content', title);
+  set('meta[name="twitter:description"]', 'content', desc);
+  set('link[rel="canonical"]', 'href', id === 'home' ? SITE_ORIGIN : SITE_ORIGIN + '#' + id);
+  set('meta[property="og:url"]', 'content', id === 'home' ? SITE_ORIGIN : SITE_ORIGIN + '#' + id);
+}
 function goToPage(id){
   if(!PAGES.includes(id)) id = 'home';
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -3634,7 +3690,21 @@ function goToPage(id){
   if(target){
     target.classList.add('active');
     target.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+    const heading = target.querySelector('h1');
+    if(heading){
+      heading.setAttribute('tabindex','-1');
+      heading.focus({preventScroll:true});
+    }
   }
+  applyPageMeta(id);
+  document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav a[href^="#"]').forEach(a=>{
+    if(a.getAttribute('href') === '#'+id) a.setAttribute('aria-current','page');
+    else a.removeAttribute('aria-current');
+  });
+  document.querySelectorAll('.btb-item').forEach(btn=>{
+    if(btn.dataset.tabpage === id) btn.setAttribute('aria-current','page');
+    else btn.removeAttribute('aria-current');
+  });
   window.scrollTo({top:0,behavior:'instant'});
   const tabMap = {home:'home', ballar:'ballar', quiz:'quiz'};
   const activeTab = tabMap[id] || null;
@@ -5382,7 +5452,7 @@ function renderYearBall(){
       <div class="yearball-visual">${ballGolfSVG(brandColor(winner.brand))}</div>
       <div class="yearball-body">
         <span class="eyebrow">Årets golfboll</span>
-        <h2>${winner.brand} ${winner.name}</h2>
+        <h1>${winner.brand} ${winner.name}</h1>
         <div class="sub">${winner.rating.toFixed(1)} ★ av ${winner.reviewSeed} recensioner · Utsedd av redaktionen</div>
         <p>${winner.flight} ${winner.player}</p>
         <div class="yearball-reasons">
@@ -5424,7 +5494,7 @@ function renderAbout(){
     <div class="about-inner reveal">
       <div>
         <span class="eyebrow">Om oss</span>
-        <h2>Byggd av golfare, för golfare som vill veta varför.</h2>
+        <h1>Byggd av golfare, för golfare som vill veta varför.</h1>
         <p>Golfbollsguiden startade med en enkel fråga: varför är det så svårt att förstå vad som faktiskt skiljer en 300-kronorsboll från en 600-kronorsboll? Vi samlar tillverkarnas data, verifierade användaromdömen och tydliga jämförelser på ett ställe — utan säljprat.</p>
         <div class="about-stats">
           <div><b>${BALLS.length}</b><span>Modeller jämförda</span></div>

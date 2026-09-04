@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Golfbollsguiden — jämför 52 golfbollar">
+  <defs>
+    <radialGradient id="glow" cx="18%" cy="8%" r="70%">
+      <stop offset="0%" stop-color="#C9A468" stop-opacity=".16"/>
+      <stop offset="100%" stop-color="#C9A468" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ball" cx="38%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D8D3C4"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0A160F"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(880 315)">
+    <circle r="185" fill="url(#ball)"/>
+    <g fill="#0A160F" opacity=".13">
+      <circle cx="-92" cy="-92" r="13"/><circle cx="0" cy="-115" r="13"/><circle cx="92" cy="-92" r="13"/>
+      <circle cx="-115" cy="0" r="13"/><circle cx="0" cy="0" r="13"/><circle cx="115" cy="0" r="13"/>
+      <circle cx="-92" cy="92" r="13"/><circle cx="0" cy="115" r="13"/><circle cx="92" cy="92" r="13"/>
+      <circle cx="-46" cy="-46" r="13"/><circle cx="46" cy="-46" r="13"/>
+      <circle cx="-46" cy="46" r="13"/><circle cx="46" cy="46" r="13"/>
+    </g>
+  </g>
+  <text x="90" y="196" font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#E4D2A8" letter-spacing="6">GOLFBOLLSGUIDEN</text>
+  <text x="90" y="308" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="bold" fill="#F1ECDD">Hitta din perfekta boll.</text>
+  <text x="90" y="376" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="#A9B6AC">52 golfbollar. 20 tillverkare. Öppen betygsmodell.</text>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="23" fill="#E4D2A8" font-weight="bold">
+    <text x="90" y="486">Distans</text><text x="238" y="486">Spinn</text><text x="356" y="486">Känsla</text><text x="500" y="486">Hållbarhet</text>
+  </g>
+  <rect x="90" y="510" width="580" height="3" fill="#C9A468" opacity=".45"/>
+  <text x="90" y="566" font-family="Helvetica, Arial, sans-serif" font-size="21" fill="#A9B6AC">Forskningsbaserat · Oberoende · Aldrig sponsrad placering</text>
+</svg>

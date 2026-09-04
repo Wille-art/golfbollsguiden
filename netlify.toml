@@ -12,8 +12,8 @@
   # direkt i webbläsaren.
   #
   # VID LANSERING: byt ut command mot den bortkommenterade raden nedan.
-  #   command = "rm -rf dist && mkdir -p dist && cp golfbollsguiden_final.html dist/index.html && cp robots.txt dist/"
-  command = "rm -rf dist && mkdir -p dist && cp coming-soon.html dist/index.html && cp robots.txt dist/"
+  #   command = "rm -rf dist && mkdir -p dist && cp golfbollsguiden_final.html dist/index.html && cp robots.txt sitemap.xml og-image.svg dist/"
+  command = "rm -rf dist && mkdir -p dist && cp coming-soon.html dist/index.html && cp robots.txt sitemap.xml og-image.svg dist/"
   publish = "dist"
 
 # Ingen functions-katalog längre: bildskanningen körs helt i webbläsaren med
@@ -24,3 +24,25 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# sitemap.xml och og-image.svg kopieras redan under lanseringsfasen. Sajten
+# ligger på hash-adresser, så varje url i sitemapen svarar med den sida som
+# faktiskt publiceras just nu — inga 404:or, och inget att komma ihåg att
+# lägga till den dag fulla sajten går live.
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    # HTML får aldrig cachas hårt: hela sajten ligger i den här enda filen, så
+    # en cachad kopia är en helt inaktuell sajt tills cachen går ut.
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/og-image.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
