@@ -522,6 +522,13 @@ button:active{transform:scale(.96);}
   font-size:14px;background:var(--porcelain);
 }
 .scan-manual-results{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:14px;}
+.scan-summary.single{grid-template-columns:1fr;}
+.scan-found{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px;}
+.scan-found li{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow);}
+.scan-found-name{font-size:13.5px;font-weight:600;}
+.scan-conf{font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap;}
+.scan-conf.high{background:var(--fairway);color:var(--invert);}
+.scan-conf.mid{background:var(--porcelain-dim);color:var(--ink-soft);}
 .scan-error a{color:var(--fairway);font-weight:700;cursor:pointer;}
 .scan-empty h4{font-size:16px;margin-bottom:8px;}
 .scan-empty p{font-size:13px;color:var(--ink-soft);line-height:1.6;margin:4px 0;}
@@ -2959,6 +2966,8 @@ function scanManualSearch(){
 }
 
 function resetScan(){
+  scanRun++;              // ogiltigförklarar en avläsning som fortfarande pågår
+  scanProgressHandler = null;
   scanImageDataUrl = null;
   document.getElementById('scanUploadPrompt').style.display = '';
   document.getElementById('scanPreviewWrap').style.display = 'none';
@@ -2999,6 +3008,12 @@ function loadTesseract(){
 // modulnivå-variabel som analyzeShelfPhoto sätter före varje avläsning.
 let scanWorkerPromise = null;
 let scanProgressHandler = null;
+// Avläsningen är asynkron och kan ta tiotals sekunder. Byter användaren bild
+// eller trycker "Välj en annan bild" under tiden hinner den gamla avläsningen
+// bli klar efteråt och skriva sitt resultat över den nya bilden. Varje
+// uppladdning får därför ett löpnummer, och ett resultat ritas bara ut om
+// numret fortfarande är det aktuella.
+let scanRun = 0;
 
 function getScanWorker(){
   if(scanWorkerPromise) return scanWorkerPromise;
@@ -3067,8 +3082,10 @@ function matchCatalogFromText(rawText){
 }
 
 async function analyzeShelfPhoto(dataUrl){
+  const myRun = ++scanRun;
   const resultsBox = document.getElementById('scanResults');
   const setStatus = msg=>{
+    if(myRun !== scanRun) return;
     resultsBox.innerHTML = `<div class="scan-loading"><span class="spinner"></span> ${escapeHTML(msg)}</div>`;
   };
   setStatus('Förbereder textavläsningen…');
@@ -3080,8 +3097,10 @@ async function analyzeShelfPhoto(dataUrl){
     // istället för en stillastående spinner.
     scanProgressHandler = p=> setStatus(`Läser av bilden… ${Math.round(p * 100)}%`);
     const {data} = await worker.recognize(dataUrl);
+    if(myRun !== scanRun) return;   // användaren har bytt bild under tiden
     renderScanResults(matchCatalogFromText(data && data.text ? data.text : ''));
   }catch(err){
+    if(myRun !== scanRun) return;
     const detail = err && err.message ? `<br><small>${escapeHTML(err.message)}</small>` : '';
     resultsBox.innerHTML = `<div class="scan-error"><b>Textavläsningen kunde inte köras.</b> Skriv istället bollens namn i sökrutan nedan.${detail}</div>`;
   }finally{
@@ -3128,21 +3147,28 @@ function renderScanResults(parsed){
   withScore.sort((a,b)=>b.score-a.score);
   const best = withScore[0];
   const bestValue = [...withScore].sort((a,b)=>subScores(b.ball).value-subScores(a.ball).value)[0];
+  // Pekar värdekortet på samma boll som kortet bredvid säger det ingenting —
+  // det blir bara samma namn två gånger, med bollens sämsta betyg som rubrik.
+  const showValueCard = bestValue.ball.id !== best.ball.id;
 
   resultsBox.innerHTML = `
-    <div class="scan-summary">
+    <div class="scan-summary${showValueCard ? '' : ' single'}">
       <div class="scan-summary-card best">
         <span class="eyebrow">${answers ? 'Bäst för dig' : 'Högst betyg av de hittade'}</span>
         <h4>${best.ball.brand} ${best.ball.name}</h4>
         <p>${answers ? matchReason(best.ball, answers) : `${best.ball.rating.toFixed(1)} ★ · ${best.ball.reviewSeed} recensioner`}</p>
       </div>
+      ${showValueCard ? `
       <div class="scan-summary-card">
         <span class="eyebrow">Bäst värde för pengarna</span>
         <h4>${bestValue.ball.brand} ${bestValue.ball.name}</h4>
         <p>Värde ${subScores(bestValue.ball).value}/10 · ${money(bestValue.ball.price)} kr/dussin</p>
-      </div>
+      </div>` : ''}
     </div>
     ${parsed.note ? `<p class="scan-note">${parsed.note}</p>` : ''}
+    <ul class="scan-found">
+      ${withScore.map(m=>`<li><span class="scan-found-name">${m.ball.brand} ${m.ball.name}</span><span class="scan-conf ${m.confidence === 'hög' ? 'high' : 'mid'}">${m.confidence === 'hög' ? 'Säker avläsning' : 'Osäker — verifiera'}</span></li>`).join('')}
+    </ul>
     <div class="scan-compare-table">${compareTableRows(withScore.slice(0,3).map(x=>x.ball))}</div>
     <p class="scan-disclaimer">Identifiering baserad på synlig text i din bild — dubbelkolla alltid mot bollen i handen innan du köper.</p>
   `;
