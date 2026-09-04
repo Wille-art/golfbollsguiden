@@ -3412,7 +3412,7 @@ async function openDetail(id, focusReviews){
     });
   });
 
-  document.getElementById('detailModalBg').classList.add('open');
+  openModal('detailModalBg');
   if(focusReviews){
     document.getElementById('detailModal').querySelector('.tab-btn[data-tab="reviews"]').click();
     document.getElementById('detailModal').querySelector('.review-form textarea')?.scrollIntoView({block:'center'});
@@ -3602,7 +3602,46 @@ async function submitReview(ballId){
   document.getElementById('detailModal').querySelector('[data-tab="reviews"]').click?.();
 }
 
-function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+let modalReturnFocus = null;
+
+// Modalerna öppnades genom att .open sattes direkt på bakgrunden. De var
+// märkta role="dialog" aria-modal="true", men fokus flyttades aldrig in i dem:
+// den som navigerar med tangentbord eller skärmläsare stod kvar bakom
+// dialogen, kunde tabba runt i sidan under den, och tappade sin plats helt när
+// den stängdes. Nu flyttas fokus in, hålls kvar, och lämnas tillbaka.
+function openModal(id){
+  const bg = document.getElementById(id);
+  if(!bg) return;
+  // Spara startpunkten bara för den första dialogen i en kedja — öppnar en
+  // dialog en annan ska fokus till slut tillbaka dit man kom ifrån.
+  if(!document.querySelector('.modal-bg.open')) modalReturnFocus = document.activeElement;
+  bg.classList.add('open');
+  const first = bg.querySelector(FOCUSABLE);
+  (first || bg.querySelector('.modal'))?.focus?.({preventScroll:true});
+}
+
+function closeModal(id){
+  const bg = document.getElementById(id);
+  if(!bg) return;
+  bg.classList.remove('open');
+  if(!document.querySelector('.modal-bg.open') && modalReturnFocus){
+    modalReturnFocus.focus?.({preventScroll:true});
+    modalReturnFocus = null;
+  }
+}
+
+// Fokusfälla: Tab får inte vandra ut ur en öppen dialog till sidan bakom.
+document.addEventListener('keydown', e=>{
+  if(e.key !== 'Tab') return;
+  const bg = [...document.querySelectorAll('.modal-bg.open')].pop();
+  if(!bg) return;
+  const items = [...bg.querySelectorAll(FOCUSABLE)].filter(el=>el.offsetParent !== null);
+  if(!items.length) return;
+  const first = items[0], last = items[items.length-1];
+  if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+});
 
 /* ============ NAV: DROPDOWN + MOBILE MENU ============ */
 function toggleNavDropdown(e, id){
@@ -3615,7 +3654,7 @@ function toggleNavDropdown(e, id){
 }
 document.addEventListener('keydown', (e)=>{
   if(e.key !== 'Escape') return;
-  document.querySelectorAll('.modal-bg.open').forEach(bg=>bg.classList.remove('open'));
+  document.querySelectorAll('.modal-bg.open').forEach(bg=>closeModal(bg.id));
   document.querySelectorAll('.nav-dropdown.open').forEach(d=>d.classList.remove('open'));
   document.getElementById('mobileNav')?.classList.remove('open');
 });
@@ -3785,7 +3824,7 @@ function openRateModal(){
     </div>
   `;
   renderRateResults('');
-  document.getElementById('rateModalBg').classList.add('open');
+  openModal('rateModalBg');
 }
 function renderRateResults(q){
   q = q.trim().toLowerCase();
@@ -4042,7 +4081,7 @@ function renderCompareBuilder(){
       <div id="cmpTableWrap">${tableHTML}</div>
     </div>
   `;
-  document.getElementById('compareModalBg').classList.add('open');
+  openModal('compareModalBg');
 }
 
 function showCompareSearch(){
@@ -5285,7 +5324,7 @@ function openGuide(id){
       ${g.body}
     </div>
   `;
-  document.getElementById('guideModalBg').classList.add('open');
+  openModal('guideModalBg');
 }
 
 const BRAND_INFO = {
@@ -5352,7 +5391,7 @@ function openBrand(brand){
       <div class="brand-models">${models.map(m=>`<div class="brand-model" onclick="closeModal('brandModalBg');openDetail('${m.id}')"><b>${m.name}</b><span>${m.tier} · ${money(m.price)} kr</span></div>`).join('')}</div>
     </div>
   `;
-  document.getElementById('brandModalBg').classList.add('open');
+  openModal('brandModalBg');
 }
 
 function renderPros(){
@@ -5609,7 +5648,7 @@ document.addEventListener('keydown', e=>{
     document.activeElement.click();
   }
   if(e.key==='Escape'){
-    document.querySelectorAll('.modal-bg.open').forEach(bg=>bg.classList.remove('open'));
+    document.querySelectorAll('.modal-bg.open').forEach(bg=>closeModal(bg.id));
     document.querySelectorAll('.nav-dropdown.open').forEach(d=>d.classList.remove('open'));
     document.getElementById('mobileNav')?.classList.remove('open');
   }
